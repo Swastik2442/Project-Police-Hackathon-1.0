@@ -1,0 +1,29 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{% if request.COOKIES.django_language %}{{ request.COOKIES.django_language }}{% else %}{{ LANGUAGE_CODE }}{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% translate "Police Feedback System" %}{% endblock %}</title>
+</head>
+<body>
+    {% block header %}
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+        <select name="language" aria-label="Select Language">
+            <option value="en"{% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
+            <option value="hi"{% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %} selected{% endif %}>हिन्दी</option>
+        </select>
+        <input type="submit" value="Set">
+    </form>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>
