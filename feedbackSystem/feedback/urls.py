@@ -7,4 +7,5 @@ urlpatterns = [
     path("submit/", views.submitFeedback_view, name="feedbackSubmit"),
     path("review/<int:id>/", views.reviewFeedback_view, name="feedbackReview"),
     path("submitted/", views.submittedFeedbacks_view, name="feedbackReview"),
+    path("api/getStations", views.getStations_api, name="APIstations"),
 ]

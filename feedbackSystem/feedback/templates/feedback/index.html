@@ -1,1 +1,47 @@
-Hello World! You're at Feedback Index Page.
+{% extends "base/home.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% translate "Home" %} - {% translate "Police Feedback System" %}{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="infinite-container">
+    <div>
+        {% for detail in details %}
+        <div>
+            {{ detail.feedbackDate }}<br>
+            {{ detail.submittedBy }}<br>
+            {{ detail.forStation }}<br>
+            {{ detail.description }}<br>
+        </div>
+        {% empty %}
+        <p>Error 404 - Not Found</p>
+        {% endfor %}
+    </div>
+
+    {% if details.has_next %}
+    <a class="infinite-more-link" href="?page={{ details.next_page_number }}">More</a>
+    {% endif %}
+
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
+</div>
+
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        onBeforePageLoad: function () {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function ($items) {
+            $('.loading').hide();
+        }
+    });
+</script>
+{% endblock %}

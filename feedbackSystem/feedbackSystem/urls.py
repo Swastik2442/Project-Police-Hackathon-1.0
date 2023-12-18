@@ -22,4 +22,5 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path("", include("base.urls")),
     path("feedback/", include("feedback.urls")),
+    path("access/", include("access.urls")),
 ]

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-16 17:12+0530\n"
-"PO-Revision-Date: 2023-12-16 17:50+0530\n"
+"PO-Revision-Date: 2023-12-19 00:13+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\base\templates\base\home.html:9
+#: .\templates\base\home.html:11
 msgid "Police Feedback System"
 msgstr "पुलिस फीडबैक प्रणाली"
+
+#: .\templates\base\login.html:6 .\templates\base\login.html:19
+msgid "Login"
+msgstr "लॉग इन"
+
+#: .\templates\base\login.html:8 .\templates\base\login.html:13
+#: .\templates\base\signup.html:14
+msgid "Phone Number"
+msgstr "फ़ोन नंबर"
+
+#: .\templates\base\login.html:10 .\templates\base\login.html:13
+#: .\templates\base\signup.html:16
+msgid "Password"
+msgstr "कूट शब्द"
+
+#: .\templates\base\login.html:13
+msgid "Invalid"
+msgstr "अमान्य"
+
+#: .\templates\base\login.html:16
+msgid "New User?"
+msgstr "नए यूजर?"
+
+#: .\templates\base\login.html:17
+msgid "Forgot your Password?"
+msgstr "कूट शब्द भूल गए?"
+
+#: .\templates\base\signup.html:6 .\templates\base\signup.html:23
+msgid "Sign Up"
+msgstr "साइन अप"
+
+#: .\templates\base\signup.html:8
+msgid "First Name"
+msgstr "मुख्य नाम"
+
+#: .\templates\base\signup.html:10
+msgid "Last Name"
+msgstr "कुलनाम"
+
+#: .\templates\base\signup.html:12
+msgid "Email ID"
+msgstr "ईमेल आईडी"
+
+#: .\templates\base\signup.html:18
+msgid "Confirm Password"
+msgstr "कूट शब्द की पुष्टि करें"
+
+#: .\templates\base\signup.html:21
+msgid "An error occured while processing your request. Please try again later."
+msgstr "कृपया बाद में पुन: प्रयास करें।"

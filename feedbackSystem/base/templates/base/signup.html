@@ -1,5 +1,37 @@
 {% extends 'base/home.html' %}
 
+{% load i18n %}
+
 {% block content %}
-Hello World! You're at Website Sign Up Page.
+<h1>{% translate "Sign Up" %}</h1>
+<form method="post">{% csrf_token %}
+    <label for="inputFirstName">{% translate "First Name" %}*</label>
+    <input type="text" class="form-control" id="inputFirstName" name="firstName" required><br>
+    <label for="inputLastName">{% translate "Last Name" %}</label>
+    <input type="text" class="form-control" id="inputLastName" name="lastName"><br>
+    <label for="inputEmail">{% translate "Email ID" %}</label>
+    <input type="email" class="form-control" id="inputEmail" name="email"><br>
+    <label for="inputPhone">{% translate "Phone Number" %}*</label>
+    <input type="number" class="form-control" id="inputPhone" name="phone" minlength="10" maxlength="10" min="1111111111" max="9999999999" required><br>
+    <label for="inputPassword1">{% translate "Password" %}*</label>
+    <input type="password" id="inputPassword1" name="password1" required><br>
+    <label for="inputPassword2">{% translate "Confirm Password" %}*</label>
+    <input type="password" id="inputPassword2" name="password2" required><br>
+    {% if error %}
+    <p>{% translate "An error occured while processing your request. Please try again later." %}</p>
+    {% endif %}
+    <button type="submit">{% translate "Sign Up" %}</button>
+</form>
+<!-- <script>
+    var password = document.getElementById("inputPassword1"), confirm_password = document.getElementById("inputPassword2");
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script> -->
 {% endblock %}

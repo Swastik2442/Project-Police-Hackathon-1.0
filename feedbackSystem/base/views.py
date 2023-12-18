@@ -4,41 +4,44 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 def login_view(request: HttpRequest):
-    """The Django View for the Website Login Page."""
+    """A Django View for the Website Login Page."""
     if request.method == 'POST':
-        username = request.POST.get('username')
+        phone = request.POST.get('phone')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect(request.GET.get("next", "siteIndex"))
-        else:
+        user = authenticate(request, username=phone, password=password)
+        if user is None:
             return render(request, 'base/login.html', {'error': True})
+        login(request, user)
+        return redirect(request.GET.get("next", "siteIndex"))
     else:
         return render(request, 'base/login.html')
 
 def logout_view(request: HttpRequest):
-    """The Django View for the Website Logout Page."""
+    """A Django View for the Website Logout Page."""
     logout(request)
     return redirect(request.GET.get("next", "siteIndex"))
 
+# TODO: Add OTP Method
 def signup_view(request: HttpRequest):
-    """The Django View for the Website Sign-Up Page."""
+    """A Django View for the Website Sign-Up Page."""
     if request.method == 'POST':
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        password = request.POST.get('password')
-        # TODO: Can be improved with multiple types of error codes
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName', '')
+        email = request.POST.get('email', '')
+        phone = str(request.POST.get('phone'))
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 != password2: return render(request, 'base/signup.html', {'error': True})
         try:
-            newUser = User(username=phone, password=password, first_name=firstname, last_name=lastname, email=email)
+            newUser = User(username=phone, first_name=firstName, last_name=lastName, email=email)
+            newUser.set_password(password1)
             newUser.save()
+            return redirect(request.GET.get("next", "siteIndex"))
         except Exception:
             return render(request, 'base/signup.html', {'error': True})
     else:
         return render(request, 'base/signup.html')
 
 def index_view(request: HttpRequest):
-    """The Django View for the Website Home Page."""
+    """A Django View for the Website Home Page."""
     return render(request, 'base/index.html')

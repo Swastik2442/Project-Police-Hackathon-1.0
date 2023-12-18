@@ -1,5 +1,21 @@
 {% extends 'base/home.html' %}
 
+{% load i18n %}
+
 {% block content %}
-Hello World! You're at Website Login Page.
+<h1>{% translate "Login" %}</h1>
+<form method="post">{% csrf_token %}
+    <label for="inputPhone">{% translate "Phone Number" %}</label>
+    <input type="number" class="form-control" id="inputPhone" name="phone" minlength="10" maxlength="10" min="1111111111" max="9999999999" required><br>
+    <label for="inputPassword">{% translate "Password" %}</label>
+    <input type="password" id="inputPassword" name="password" required><br>
+    {% if error %}
+    <p>{% translate "Invalid" %} {% translate "Phone Number" %}/{% translate "Password" %}</p>
+    {% endif %}
+    <p>
+    <a href="{% url 'siteSignup' %}?next={{ request.get_full_path }}">{% translate "New User?" %}</a><br>
+    <a href="#">{% translate "Forgot your Password?" %}</a>
+    </p>
+    <button type="submit">{% translate "Login" %}</button>
+</form>
 {% endblock %}

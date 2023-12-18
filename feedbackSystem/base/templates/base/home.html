@@ -1,3 +1,4 @@
+{% load static %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -6,10 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'img/rp_logo.png' %}">
     <title>{% block title %}{% translate "Police Feedback System" %}{% endblock %}</title>
+    {% block scripts %}{% endblock %}
 </head>
 <body>
     {% block header %}
+    <img src="{% static 'img/rp_logo.png' %}" width="50" height="50">
     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
         <input name="next" type="hidden" value="{{ request.get_full_path }}">
         <select name="language" aria-label="Select Language">
