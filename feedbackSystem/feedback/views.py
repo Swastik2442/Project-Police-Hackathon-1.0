@@ -1,9 +1,14 @@
-from django.shortcuts import render
+from datetime import datetime
+
+from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import AnonymousUser
 
 from .models import Division, PoliceStation, Feedback
+
+jsTimeFormat = "%Y-%m-%dT%H:%M"
 
 def index_view(request: HttpRequest):
     """A Django View for the User Dashboard."""
@@ -25,26 +30,65 @@ def index_view(request: HttpRequest):
 
 def submitFeedback_view(request: HttpRequest):
     """A Django View for Submission of New Feedback."""
-    return render(request, 'feedback/submit.html')
+    context = dict()
+    divisions = Division.objects.all()
+    context['divisions'] = divisions
+    if request.method == 'POST':
+        userIP = request.META.get('REMOTE_ADDR')
+        stationID = request.POST.get('stationID')
+        description = request.POST.get('description')
+        feedbackDate = datetime.now()
 
-def reviewFeedback_view(request: HttpRequest, id: int):
-    """A Django View for Reviewing Submitted Feedback."""
-    return render(request, 'feedback/review.html')
+        incidentDate = request.POST.get('incidentDate', '')
+        reportedDate = request.POST.get('reportedDate', '')
+        if incidentDate == '':
+            incidentDate = None
+        else:
+            incidentDate = datetime.strptime(incidentDate, jsTimeFormat)
+        if reportedDate == '':
+            reportedDate = None
+        else:
+            reportedDate = datetime.strptime(reportedDate, jsTimeFormat)
+        
+        user = request.user
+        if isinstance(user, AnonymousUser):
+            user = None
+
+        try:
+            station = PoliceStation.objects.get(id=stationID)
+            new = Feedback(
+                submittedBy=user,
+                userIP=userIP,
+                forStation=station,
+                description=description,
+                incidentDate=incidentDate,
+                reportedDate=reportedDate,
+                feedbackDate=feedbackDate
+                )
+            new.save()
+            return redirect(request.GET.get("next", "feedbackView"))
+        except Exception as err:
+            print(err)
+            context['error'] = True
+            return render(request, 'feedback/submit.html', context)
+    return render(request, 'feedback/submit.html', context)
 
 def submittedFeedbacks_view(request: HttpRequest):
     """A Django View for Listing all Submitted Feedbacks."""
-    return render(request, 'feedback/feedbacks.html')
+    if request.user.is_authenticated:
+        feedbacks = Feedback.objects.filter(submittedBy=request.user).order_by("-feedbackDate", "-reportedDate", "-incidentDate")
+        return render(request, 'feedback/view.html', {'feedbacks': feedbacks})
+    return render(request, 'feedback/view.html')
 
 def getStations_api(request: HttpRequest):
     """A Django View for Getting all Police Stations within a Division."""
-    if request.method == "GET":
-        divisionID = request.GET.get('divisionID', -1)
-        if divisionID != -1:
-            division = Division.objects.filter(id=divisionID).first()
-            stations = PoliceStation.objects.filter(division=division)
-            json = {"stations": list()}
-            for i in stations:
-                station = [i.id, i.name]
-                json['stations'].append(station)
-            return JsonResponse(json)
+    divisionID = request.GET.get('divisionID', -1)
+    if divisionID != -1:
+        division = Division.objects.filter(id=divisionID).first()
+        stations = PoliceStation.objects.filter(division=division)
+        json = {"stations": list()}
+        for i in stations:
+            station = [i.id, i.name]
+            json['stations'].append(station)
+        return JsonResponse(json)
     return JsonResponse({'error': True})

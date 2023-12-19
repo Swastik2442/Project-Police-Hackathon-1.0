@@ -1,56 +1,29 @@
 {% extends 'base/home.html' %}
 
+{% load static %}
 {% load i18n %}
 
-{% block content %}
-<h1>{% translate "Login" %}</h1>
-<form method="post">{% csrf_token %}
-    <label for="inputPhone">{% translate "Phone Number" %}</label>
-    <input type="number" class="form-control" id="inputPhone" name="phone" minlength="10" maxlength="10" min="1111111111" max="9999999999" required><br>
-    <label for="inputPassword">{% translate "Password" %}</label>
-    <input type="password" id="inputPassword" name="password" required><br>
-    {% if error %}
-    <p>{% translate "Invalid" %} {% translate "Phone Number" %}/{% translate "Password" %}</p>
-    {% endif %}
-    <p>
-    <a href="{% url 'siteSignup' %}?next={{ request.get_full_path }}">{% translate "New User?" %}</a><br>
-    <a href="#">{% translate "Forgot your Password?" %}</a>
-    </p>
-    <button type="submit">{% translate "Login" %}</button>
-</form>
-{% endblock %}
+{% block title%}{% translate "Login" %}{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twitter Login Form - Code Mo</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-</head>
-<body>
-    <div class="container">
-        <div class="box box-one">
-            <i class="fab fa-twitter"><img src="https://img.icons8.com/color/50/000000/twitter--v1.png"/></i>
-            <button>
-                <img src="google.png" width="19">
-                <span>Sign in with Google</span>
-            </button>
-            <button>
-                <img src="apple.png" width="19">
-                <span>Sign in with Apple</span>
-            </button>
+{% block content %}
+<div class="container border rounded-5 shadow" style="max-width: 540px; background-color: white;">
+    <form class="p-5 text-center" method="post">{% csrf_token %}
+        <img class="mb-3" src="{% static 'img/rp_logo.png' %}" width="72" height="72"/>
+        <h3 class="mb-3">{% translate "Login" %}</h3>
+        <div class="row mb-3">
+            <label for="inputPhone" class="form-label">{% translate "Phone Number" %}</label>
+            <input class="form-control" type="number" id="inputPhone" name="phone" minlength="10" maxlength="10" min="1111111111" max="9999999999" required>
         </div>
-        <h5>Or</h5>
-        <div class="box box-two">
-            <form>
-                <input type="text" placeholder="Phone,email, or username"/>
-            </form>
-            <button class="next-btn">Next</button>
-            <button>Forget password</button>
+        <div class="row mb-3">
+            <label for="inputPassword" class="form-label">{% translate "Password" %}</label>
+            <input class="form-control" type="password" id="inputPassword" name="password" required>
         </div>
-        <p>Don't have an account <a href="#">Sign Up</a></p>
-    </div>
-</body>
-</html>
+        {% if error %}
+        <p>{% translate "Invalid" %} {% translate "Phone Number" %}/{% translate "Password" %}</p>
+        {% endif %}
+        <button class="btn text-bg-dark text-white rounded-pill col-12 mb-3" type="submit">{% translate "Login" %}</button>
+        <a class="btn border rounded-pill col-12 mb-3" href="#" role="button">{% translate "Forgot your Password?" %}</a>
+        <a href="{% url 'siteSignup' %}?next={{ request.get_full_path }}">{% translate "New User?" %}</a>
+    </form>
+</div>
+{% endblock %}

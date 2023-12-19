@@ -1,5 +1,93 @@
-{% extends 'base/home.html' %}
+{% extends 'feedback/home.html' %}
+
+{% load i18n %}
 
 {% block content %}
-Hello World! You're at Feedback Submission Page.
+<div class="container" id="main" style="width: auto;">
+    <form method="post" class="needs-validation" novalidate>{% csrf_token %}
+        <h3>{% translate "Submit Feedback for Police" %}</h3>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="inputIncidentDate" class="form-label">{% translate "Incident Date" %}</label>
+                <input class="form-control" type="datetime-local" id="inputIncidentDate" min="1948-01-01T00:00:00" max="{% now 'Y-m-d' %}T{% now 'H:i:s' %}" name="incidentDate">
+            </div>
+            <div class="col-md-6">
+                <label for="inputReportedDate" class="form-label">{% translate "Reported Date" %}</label>
+                <input class="form-control" type="datetime-local" id="inputReportedDate" min="1948-01-01T00:00:00" max="{% now 'Y-m-d' %}T{% now 'H:i:s' %}" name="reportedDate">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="selectDivision" class="form-label">{% translate "Division" %}*</label>
+                <select class="form-select" id="selectDivision" name="divisionID" onchange="getStations()" required>
+                    <option value="" selected>{% translate "Select" %}</option>
+                    {% for i in divisions %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectStation" class="form-label">{% translate "With Whom" %}*</label>
+                <select class="form-select" id="selectStation" name="stationID" required>
+                    <option value="" selected>{% translate "Select" %}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="rangeExperience" class="form-label">{% translate "Overall Experience" %}</label>
+                <input type="range" id="rangeExperience" name="experience" class="form-range px-lg-5" min="1" max="5" required>
+                <div id="experienceHelp" class="form-text">
+                    <ul class="nav nav-justified">
+                        <li class="nav-item">{% translate "Very Bad" %}</li>
+                        <li class="nav-item">{% translate "Bad" %}</li>
+                        <li class="nav-item">{% translate "Neutral" %}</li>
+                        <li class="nav-item">{% translate "Good" %}</li>
+                        <li class="nav-item">{% translate "Very Good" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="inputDescription" class="form-label">{% translate "Feedback" %}*</label>
+                <textarea class="form-control" id="inputDescription" name="description" maxlength="500" required></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">{% translate "Submit" %}</button>
+    </form>
+</div>
+<script>
+    (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+    var stationSelect = document.getElementById('selectStation');
+    function getStations() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                data = JSON.parse(this.responseText);
+                var stationData = "<option value='' selected>{% translate 'Select' %}</option>";
+                for (var i = 0; i < data['stations'].length; i++) {
+                    var station = data['stations'][i];
+                    stationData += `\n<option value='${station[0]}'>${station[1]}</option>`;
+                }
+                stationSelect.innerHTML = stationData;
+            }
+        };
+        var divisionID = document.getElementById('selectDivision').value
+        xhttp.open("GET", `{% url 'APIstations' %}?divisionID=${divisionID}`, true);
+        xhttp.send()
+    }
+</script>
 {% endblock %}

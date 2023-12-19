@@ -1,8 +1,9 @@
-{% extends "base/home.html" %}
-{% load i18n %}
+{% extends "feedback/home.html" %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% translate "Home" %} - {% translate "Police Feedback System" %}{% endblock %}
+{% block title %}{% translate "Home" %}{% endblock %}
 {% block scripts %}
 <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
@@ -10,14 +11,59 @@
 {% endblock %}
 
 {% block content %}
-<div class="infinite-container">
+<div class="container infinite-container" id="main" style="width: auto;">
     <div>
         {% for detail in details %}
-        <div>
-            {{ detail.feedbackDate }}<br>
-            {{ detail.submittedBy }}<br>
-            {{ detail.forStation }}<br>
-            {{ detail.description }}<br>
+        <div class="card shadow-sm m-3">
+            <div class="card-body">
+                <h6 class="card-subtitle text-body-secondary float-end mt-1">
+                    {{ detail.feedbackDate }}
+                </h6>
+                <h5 class="card-title">
+                    {% if not detail.submittedBy %}
+                    {% translate 'Someone' %}
+                    {% else %}
+                    {{ detail.submittedBy.first_name }} {{ detail.submittedBy.last_name }}
+                    {% endif %}
+                    <span class="text-body-secondary">
+                        {% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %}
+                        felt
+                        {% if detail.experience is 1 %}
+                        {% translate 'Very Bad' %}
+                        {% elif detail.experience is 2 %}
+                        {% translate 'Bad' %}
+                        {% elif detail.experience is 3 %}
+                        {% translate 'Neutral' %}
+                        {% elif detail.experience is 4 %}
+                        {% translate 'Good' %}
+                        {% elif detail.experience is 5 %}
+                        {% translate 'Very Good' %}
+                        {% endif %}
+                        {% endif %}
+                        {% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %}
+                        ने
+                        {% if detail.experience is 1 %}
+                        {% translate 'Very Bad' %}
+                        {% elif detail.experience is 2 %}
+                        {% translate 'Bad' %}
+                        {% elif detail.experience is 3 %}
+                        {% translate 'Neutral' %}
+                        {% elif detail.experience is 4 %}
+                        {% translate 'Good' %}
+                        {% elif detail.experience is 5 %}
+                        {% translate 'Very Good' %}
+                        {% endif %}
+                        महसूस किया
+                        {% endif %}
+                    </span>
+                </h5>
+                <h6 class="card-subtitle text-body-tertiary mb-2">
+                    {{ detail.forStation }}
+                </h6>
+                <p class="card-text">{{ detail.description }}</p>
+                <!-- <button class="btn card-link">Like</button> --> <!-- Can be Implemented Later -->
+                <!-- <button class="btn card-link">Dislike</button> -->
+            </div>
         </div>
         {% empty %}
         <p>Error 404 - Not Found</p>
@@ -45,151 +91,3 @@
     });
 </script>
 {% endblock %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Twitter Clone - Final</title>
-    <link rel="stylesheet" href="{% static 'css/feedbackIndex.css' %}" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <!-- sidebar starts -->
-    <div class="sidebar">
-      <i class="fab fa-twitter"></i>
-      <div class="sidebarOption active">
-        <span class="material-icons"> home </span>
-        <h2>Home</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> search </span>
-        <h2>Explore</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> notifications_none </span>
-        <h2>Notifications</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> mail_outline </span>
-        <h2>Messages</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> bookmark_border </span>
-        <h2>Bookmarks</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> list_alt </span>
-        <h2>Lists</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> perm_identity </span>
-        <h2>Profile</h2>
-      </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> more_horiz </span>
-        <h2>More</h2>
-      </div>
-      <button class="sidebar__tweet">Tweet</button>
-    </div>
-    <!-- sidebar ends -->
-
-    <!-- feed starts -->
-    <div class="feed">
-      
-      <!-- post starts -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-            alt=""
-          />
-        </div>
-
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                Somanath Goudar
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                >
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-            alt=""
-          />
-          <div class="post__footer">
-            <span class="material-icons"> repeat </span>
-            <span class="material-icons"> favorite_border </span>
-            <span class="material-icons"> publish </span>
-          </div>
-        </div>
-      </div>
-      <!-- post ends -->
-
-      <!-- post starts -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-            alt=""
-          />
-        </div>
-
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                Somanath Goudar
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                >
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-            alt=""
-          />
-          <div class="post__footer">
-            <span class="material-icons"> repeat </span>
-            <span class="material-icons"> favorite_border </span>
-            <span class="material-icons"> publish </span>
-          </div>
-        </div>
-      </div>
-      <!-- post ends -->
-    </div>
-    <!-- feed ends -->
-      <div class="widgets__widgetContainer">
-        <!-- Widget content goes here -->
-      </div>
-    </div>
-    <!-- widgets ends -->
-  </body>
-</html>

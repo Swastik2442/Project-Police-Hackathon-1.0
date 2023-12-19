@@ -1,0 +1,20 @@
+{% extends 'feedback/home.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container" id="main" style="width: auto;">
+    {% if user.is_authenticated %}
+    {% for feedback in feedbacks %}
+    <div>
+        {{ feedback.feedbackDate }}
+        <p>{{ feedback.description }}</p>
+        {{ feedback.forStation }}
+    </div>
+    {% empty %}
+    <p>{% translate "No Feedback has been submitted." %}</p>
+    {% endfor %}
+    {% else %}
+    <p>{% translate "Please Log In to view submitted Feedbacks." %}</p>
+    {% endif %}
+</div>
+{% endblock %}

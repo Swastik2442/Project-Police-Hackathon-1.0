@@ -1,37 +1,76 @@
 {% extends 'base/home.html' %}
 
+{% load static %}
 {% load i18n %}
 
 {% block content %}
-<h1>{% translate "Sign Up" %}</h1>
-<form method="post">{% csrf_token %}
-    <label for="inputFirstName">{% translate "First Name" %}*</label>
-    <input type="text" class="form-control" id="inputFirstName" name="firstName" required><br>
-    <label for="inputLastName">{% translate "Last Name" %}</label>
-    <input type="text" class="form-control" id="inputLastName" name="lastName"><br>
-    <label for="inputEmail">{% translate "Email ID" %}</label>
-    <input type="email" class="form-control" id="inputEmail" name="email"><br>
-    <label for="inputPhone">{% translate "Phone Number" %}*</label>
-    <input type="number" class="form-control" id="inputPhone" name="phone" minlength="10" maxlength="10" min="1111111111" max="9999999999" required><br>
-    <label for="inputPassword1">{% translate "Password" %}*</label>
-    <input type="password" id="inputPassword1" name="password1" required><br>
-    <label for="inputPassword2">{% translate "Confirm Password" %}*</label>
-    <input type="password" id="inputPassword2" name="password2" required><br>
-    {% if error %}
-    <p>{% translate "An error occured while processing your request. Please try again later." %}</p>
-    {% endif %}
-    <button type="submit">{% translate "Sign Up" %}</button>
-</form>
-<!-- <script>
-    var password = document.getElementById("inputPassword1"), confirm_password = document.getElementById("inputPassword2");
+<div class="container border rounded-5 shadow" style="max-width: 992px; background-color: white;">
+    <form method="post" class="p-5 text-center needs-validation" novalidate>{% csrf_token %}
+        <img class="mb-3" src="{% static 'img/rp_logo.png' %}" width="72" height="72" />
+        <h3 class="mb-3">{% translate "Sign Up" %}</h3>
+        <div class="text-start">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="inputFirstName" class="form-label">{% translate "First Name" %}*</label>
+                    <input type="text" id="inputFirstName" name="firstName" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputLastName" class="form-label">{% translate "Last Name" %}</label>
+                    <input type="text" id="inputLastName" name="lastName" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">{% translate "Email ID" %}</label>
+                    <input type="email" id="inputEmail" name="email" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPhone" class="form-label">{% translate "Phone Number" %}*</label>
+                    <input type="number" id="inputPhone" name="phone" class="form-control" minlength="10" maxlength="10"
+                        min="1111111111" max="9999999999" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="inputPassword1" class="form-label">{% translate "Password" %}*</label>
+                    <input type="password" id="inputPassword1" name="password1" class="form-control"
+                        onchange="validatePassword()" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword2" class="form-label">{% translate "Confirm Password" %}*</label>
+                    <input type="password" id="inputPassword2" name="password2" class="form-control"
+                        onkeyup="validatePassword()" required>
+                </div>
+            </div>
+        </div>
+        {% if error %}
+        <p>{% translate "An error occured while processing your request. Please try again later." %}</p>
+        {% endif %}
+        <button class="btn btn-outline-primary rounded-pill col-12" type="submit">{% translate "Sign Up" %}</button>
+    </form>
+</div>
+<script>
+    (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
     function validatePassword() {
+        var password = document.getElementById("inputPassword1");
+        var confirm_password = document.getElementById("inputPassword2");
         if (password.value != confirm_password.value) {
             confirm_password.setCustomValidity("Passwords Don't Match");
         } else {
             confirm_password.setCustomValidity('');
         }
     }
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-</script> -->
+</script>
 {% endblock %}

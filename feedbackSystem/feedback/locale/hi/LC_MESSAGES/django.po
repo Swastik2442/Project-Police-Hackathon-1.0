@@ -1,0 +1,135 @@
+# Hindi Translation File for feedback app in feedbackSystem.
+# Copyright (C) 2023 Binary Brigade
+# This file is distributed under the same license as the feedbackSystem package.
+# Swastik Kulshreshtha <swastik2442@gmail.com>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: feedbackSystem 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-19 23:19+0530\n"
+"PO-Revision-Date: 2023-12-19 23:19+0530\n"
+"Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
+"Language: Hindi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\feedback\templates\feedback\home.html:11
+#: .\feedback\templates\feedback\home.html:38
+#: .\feedback\templates\feedback\home.html:66
+#: .\feedback\templates\feedback\index.html:6
+msgid "Home"
+msgstr "होम"
+
+#: .\feedback\templates\feedback\home.html:11
+#: .\feedback\templates\feedback\home.html:32
+msgid "Police Feedback System"
+msgstr "पुलिस प्रतिक्रिया प्रणाली"
+
+#: .\feedback\templates\feedback\home.html:44
+msgid "Submit Feedback"
+msgstr "प्रतिक्रिया दें"
+
+#: .\feedback\templates\feedback\home.html:50
+msgid "View Submitted Feedbacks"
+msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखें"
+
+#: .\feedback\templates\feedback\home.html:67
+#: .\feedback\templates\feedback\submit.html:53
+msgid "Feedback"
+msgstr "प्रतिक्रिया"
+
+#: .\feedback\templates\feedback\home.html:68
+msgid "Staff Dashboard"
+msgstr "स्टाफ डैशबोर्ड"
+
+#: .\feedback\templates\feedback\home.html:74
+msgid "Log Out"
+msgstr "लॉग आउट"
+
+#: .\feedback\templates\feedback\home.html:76
+msgid "Login"
+msgstr "लॉग इन"
+
+#: .\feedback\templates\feedback\home.html:77
+msgid "Sign Up"
+msgstr "साइन अप"
+
+#: .\feedback\templates\feedback\index.html:24
+msgid "Someone"
+msgstr "किसी"
+
+#: .\feedback\templates\feedback\index.html:32
+#: .\feedback\templates\feedback\index.html:46
+#: .\feedback\templates\feedback\submit.html:42
+msgid "Very Bad"
+msgstr "बहुत बुरा"
+
+#: .\feedback\templates\feedback\index.html:34
+#: .\feedback\templates\feedback\index.html:48
+#: .\feedback\templates\feedback\submit.html:43
+msgid "Bad"
+msgstr "बुरा"
+
+#: .\feedback\templates\feedback\index.html:36
+#: .\feedback\templates\feedback\index.html:50
+#: .\feedback\templates\feedback\submit.html:44
+msgid "Neutral"
+msgstr "निष्पक्ष"
+
+#: .\feedback\templates\feedback\index.html:38
+#: .\feedback\templates\feedback\index.html:52
+#: .\feedback\templates\feedback\submit.html:45
+msgid "Good"
+msgstr "अच्छा"
+
+#: .\feedback\templates\feedback\index.html:40
+#: .\feedback\templates\feedback\index.html:54
+#: .\feedback\templates\feedback\submit.html:46
+msgid "Very Good"
+msgstr "बहुत अच्छा"
+
+#: .\feedback\templates\feedback\submit.html:8
+msgid "Submit Feedback for Police"
+msgstr "पुलिस के लिए प्रतिक्रिया दें"
+
+#: .\feedback\templates\feedback\submit.html:11
+msgid "Incident Date"
+msgstr "घटना दिनांक"
+
+#: .\feedback\templates\feedback\submit.html:15
+msgid "Reported Date"
+msgstr "रिपोर्टिंग की तारीख"
+
+#: .\feedback\templates\feedback\submit.html:21
+msgid "Division"
+msgstr "विभाग"
+
+#: .\feedback\templates\feedback\submit.html:23
+#: .\feedback\templates\feedback\submit.html:32
+#: .\feedback\templates\feedback\submit.html:80
+msgid "Select"
+msgstr "चयन करें"
+
+#: .\feedback\templates\feedback\submit.html:30
+msgid "With Whom"
+msgstr "किससे"
+
+#: .\feedback\templates\feedback\submit.html:38
+msgid "Overall Experience"
+msgstr "समग्र अनुभव"
+
+#: .\feedback\templates\feedback\submit.html:57
+msgid "Submit"
+msgstr "जमा करें"
+
+#: .\feedback\templates\feedback\view.html:14
+msgid "No Feedback has been submitted."
+msgstr "कोई प्रतिक्रियाऍं दर्ज नहीं की गई है।"
+
+#: .\feedback\templates\feedback\view.html:17
+msgid "Please Log In to view submitted Feedbacks."
+msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखने के लिए कृपया लॉग इन करें।"
