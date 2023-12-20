@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'img/rp_logo.png' %}">
-    <title>{% block title %}{% translate "Home" %}{% endblock %} - {% translate "Police Feedback System" %}</title>
+    <title>{% block title %}{% translate "Home" %} - {% endblock %}{% translate "Police Feedback System" %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {% block scripts %}{% endblock %}
@@ -18,7 +18,7 @@
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div class="col-md-3 mb-2 mb-md-0">
-            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <a href="{{ request.path|urlencode }}" class="d-inline-flex link-body-emphasis text-decoration-none">
               <img class="bi" src="{% static 'img/rp_logo.png' %}" width="32" height="32" role="img" aria-label="Rajasthan Police"></img>
             </a>
           </div>
@@ -34,13 +34,13 @@
             <span class="me-2">{{ user.first_name }}</span>
             <a class="btn btn-outline-primary me-2" href="{% url 'siteLogout' %}?next={{ request.path|urlencode }}" role="button">{% translate "Log Out" %}</a>
             {% else %}
-            <a class="btn btn-outline-primary me-2" href="{% url 'siteLogin' %}" role="button">{% translate "Login" %}</a>
-            <a class="btn btn-primary" href="{% url 'siteSignup' %}" role="button">{% translate "Sign Up" %}</a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'siteLogin' %}?next={{ request.path|urlencode }}" role="button">{% translate "Login" %}</a>
+            <a class="btn btn-primary me-2" href="{% url 'siteSignup' %}" role="button">{% translate "Sign Up" %}</a>
             {% endif %}
             <form class="d-inline-block" action="{% url 'set_language' %}?next={{ request.get_full_path }}" method="post">{% csrf_token %}
                 <select class="form-select" name="language" aria-label="Select Language" onchange="this.form.submit()">
-                    <option value="en"{% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
                     <option value="hi"{% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %} selected{% endif %}>हिन्दी</option>
+                    <option value="en"{% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
                 </select>
             </form>
           </div>

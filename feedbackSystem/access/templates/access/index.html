@@ -1,5 +1,72 @@
-{% extends 'base/home.html' %}
+{% extends 'access/home.html' %}
+{% load static %}
+{% load i18n %}
 
 {% block content %}
-Hello World! You're at Access Home Page.
+<canvas class="my-4 w-100" id="myChart" width="1099" height="464"
+    style="display: block; box-sizing: border-box; height: 154px; width: 366px;"></canvas>
+
+<h2>{% translate 'Top Police Stations' %}</h2> <!-- Data for Top Stations -->
+<div class="table-responsive small">
+    <table class="table table-striped table-sm text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{% translate 'Station Name' %}</th>
+                <th scope="col">{% translate 'No. of Feedbacks' %}</th>
+                <th scope="col">{% translate 'Positive Experience' %}</th>
+                <th scope="col">{% translate 'Neutral Experience' %}</th>
+                <th scope="col">{% translate 'Negative Experience' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for station in stations %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ station.0 }}</td>
+                <td>{{ station.1 }}</td>
+                <td>{{ station.2 }}</td>
+                <td>{{ station.3 }}</td>
+                <td>{{ station.4 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block bodyScripts %}
+<script src="{% static 'js/chart.umd.js' %}"></script>
+<script>
+    (() => {
+        'use strict'
+        const ctx = document.getElementById('myChart')
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for label in labels %}"{{ label }}",{% endfor %}],
+                datasets: [{
+                    label: "{% translate 'Feedbacks Submitted' %}",
+                    data: [{% for data in dataset %}{{ data }},{% endfor %}],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#1e90ff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#1e90ff'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        boxPadding: 3
+                    }
+                }
+            }
+        })
+    })()
+</script>
 {% endblock %}

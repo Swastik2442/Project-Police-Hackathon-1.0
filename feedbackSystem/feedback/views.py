@@ -13,11 +13,7 @@ jsTimeFormat = "%Y-%m-%dT%H:%M"
 def index_view(request: HttpRequest):
     """A Django View for the User Dashboard."""
     feedbacks = None
-    search = request.GET.get('search', '')
-    if search == '':
-        feedbacks = Feedback.objects.all().order_by("-feedbackDate", "-reportedDate", "-incidentDate")
-    else:
-        feedbacks = Feedback.objects.filter(name__contains=search).order_by("-feedbackDate", "-reportedDate", "-incidentDate")
+    feedbacks = Feedback.objects.all().order_by("-feedbackDate", "-reportedDate", "-incidentDate")
     page = request.GET.get('page', 1)
     paginator = Paginator(feedbacks, 10)
     try:
@@ -26,7 +22,7 @@ def index_view(request: HttpRequest):
         details = paginator.page(1)
     except EmptyPage:
         details = paginator.page(paginator.num_pages)
-    return render(request, 'feedback/index.html', {"details": details, 'search': search})
+    return render(request, 'feedback/index.html', {"details": details})
 
 def submitFeedback_view(request: HttpRequest):
     """A Django View for Submission of New Feedback."""
@@ -36,6 +32,7 @@ def submitFeedback_view(request: HttpRequest):
     if request.method == 'POST':
         userIP = request.META.get('REMOTE_ADDR')
         stationID = request.POST.get('stationID')
+        experience = request.POST.get('experience')
         description = request.POST.get('description')
         feedbackDate = datetime.now()
 
@@ -60,6 +57,7 @@ def submitFeedback_view(request: HttpRequest):
                 submittedBy=user,
                 userIP=userIP,
                 forStation=station,
+                experience=experience,
                 description=description,
                 incidentDate=incidentDate,
                 reportedDate=reportedDate,
@@ -77,7 +75,15 @@ def submittedFeedbacks_view(request: HttpRequest):
     """A Django View for Listing all Submitted Feedbacks."""
     if request.user.is_authenticated:
         feedbacks = Feedback.objects.filter(submittedBy=request.user).order_by("-feedbackDate", "-reportedDate", "-incidentDate")
-        return render(request, 'feedback/view.html', {'feedbacks': feedbacks})
+        page = request.GET.get('page', 1)
+        paginator = Paginator(feedbacks, 10)
+        try:
+            details = paginator.page(page)
+        except PageNotAnInteger:
+            details = paginator.page(1)
+        except EmptyPage:
+            details = paginator.page(paginator.num_pages)
+        return render(request, 'feedback/view.html', {'feedbacks': details})
     return render(request, 'feedback/view.html')
 
 def getStations_api(request: HttpRequest):

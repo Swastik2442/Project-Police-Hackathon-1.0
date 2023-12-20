@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-19 23:19+0530\n"
-"PO-Revision-Date: 2023-12-19 23:19+0530\n"
+"PO-Revision-Date: 2023-12-20 17:36+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: .\feedback\templates\feedback\home.html:11
 #: .\feedback\templates\feedback\home.html:38
 #: .\feedback\templates\feedback\home.html:66
-#: .\feedback\templates\feedback\index.html:6
+#: .\feedback\templates\feedback\index.html:7
 msgid "Home"
 msgstr "होम"
 
@@ -30,15 +30,17 @@ msgid "Police Feedback System"
 msgstr "पुलिस प्रतिक्रिया प्रणाली"
 
 #: .\feedback\templates\feedback\home.html:44
+#: .\feedback\templates\feedback\submit.html:4
 msgid "Submit Feedback"
 msgstr "प्रतिक्रिया दें"
 
 #: .\feedback\templates\feedback\home.html:50
+#: .\feedback\templates\feedback\view.html:5
 msgid "View Submitted Feedbacks"
 msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखें"
 
 #: .\feedback\templates\feedback\home.html:67
-#: .\feedback\templates\feedback\submit.html:53
+#: .\feedback\templates\feedback\submit.html:58
 msgid "Feedback"
 msgstr "प्रतिक्रिया"
 
@@ -58,78 +60,102 @@ msgstr "लॉग इन"
 msgid "Sign Up"
 msgstr "साइन अप"
 
-#: .\feedback\templates\feedback\index.html:24
+#: .\feedback\templates\feedback\index.html:16
+msgid "Feedbacks by Everyone"
+msgstr "हर किसी की प्रतिक्रियाएँ"
+
+#: .\feedback\templates\feedback\index.html:26
 msgid "Someone"
 msgstr "किसी"
 
-#: .\feedback\templates\feedback\index.html:32
-#: .\feedback\templates\feedback\index.html:46
-#: .\feedback\templates\feedback\submit.html:42
+#: .\feedback\templates\feedback\index.html:35
+#: .\feedback\templates\feedback\index.html:49
+#: .\feedback\templates\feedback\submit.html:47
+#: .\feedback\templates\feedback\view.html:29
+#: .\feedback\templates\feedback\view.html:43
 msgid "Very Bad"
 msgstr "बहुत बुरा"
 
-#: .\feedback\templates\feedback\index.html:34
-#: .\feedback\templates\feedback\index.html:48
-#: .\feedback\templates\feedback\submit.html:43
+#: .\feedback\templates\feedback\index.html:37
+#: .\feedback\templates\feedback\index.html:51
+#: .\feedback\templates\feedback\submit.html:48
+#: .\feedback\templates\feedback\view.html:31
+#: .\feedback\templates\feedback\view.html:45
 msgid "Bad"
 msgstr "बुरा"
 
-#: .\feedback\templates\feedback\index.html:36
-#: .\feedback\templates\feedback\index.html:50
-#: .\feedback\templates\feedback\submit.html:44
+#: .\feedback\templates\feedback\index.html:39
+#: .\feedback\templates\feedback\index.html:53
+#: .\feedback\templates\feedback\submit.html:49
+#: .\feedback\templates\feedback\view.html:33
+#: .\feedback\templates\feedback\view.html:47
 msgid "Neutral"
 msgstr "निष्पक्ष"
 
-#: .\feedback\templates\feedback\index.html:38
-#: .\feedback\templates\feedback\index.html:52
-#: .\feedback\templates\feedback\submit.html:45
+#: .\feedback\templates\feedback\index.html:41
+#: .\feedback\templates\feedback\index.html:55
+#: .\feedback\templates\feedback\submit.html:50
+#: .\feedback\templates\feedback\view.html:35
+#: .\feedback\templates\feedback\view.html:49
 msgid "Good"
 msgstr "अच्छा"
 
-#: .\feedback\templates\feedback\index.html:40
-#: .\feedback\templates\feedback\index.html:54
-#: .\feedback\templates\feedback\submit.html:46
+#: .\feedback\templates\feedback\index.html:43
+#: .\feedback\templates\feedback\index.html:57
+#: .\feedback\templates\feedback\submit.html:51
+#: .\feedback\templates\feedback\view.html:37
+#: .\feedback\templates\feedback\view.html:51
 msgid "Very Good"
 msgstr "बहुत अच्छा"
 
-#: .\feedback\templates\feedback\submit.html:8
+#: .\feedback\templates\feedback\submit.html:13
 msgid "Submit Feedback for Police"
 msgstr "पुलिस के लिए प्रतिक्रिया दें"
 
-#: .\feedback\templates\feedback\submit.html:11
+#: .\feedback\templates\feedback\submit.html:16
 msgid "Incident Date"
 msgstr "घटना दिनांक"
 
-#: .\feedback\templates\feedback\submit.html:15
+#: .\feedback\templates\feedback\submit.html:20
 msgid "Reported Date"
 msgstr "रिपोर्टिंग की तारीख"
 
-#: .\feedback\templates\feedback\submit.html:21
+#: .\feedback\templates\feedback\submit.html:26
 msgid "Division"
 msgstr "विभाग"
 
-#: .\feedback\templates\feedback\submit.html:23
-#: .\feedback\templates\feedback\submit.html:32
-#: .\feedback\templates\feedback\submit.html:80
+#: .\feedback\templates\feedback\submit.html:28
+#: .\feedback\templates\feedback\submit.html:37
+#: .\feedback\templates\feedback\submit.html:85
 msgid "Select"
 msgstr "चयन करें"
 
-#: .\feedback\templates\feedback\submit.html:30
+#: .\feedback\templates\feedback\submit.html:35
 msgid "With Whom"
 msgstr "किससे"
 
-#: .\feedback\templates\feedback\submit.html:38
+#: .\feedback\templates\feedback\submit.html:43
 msgid "Overall Experience"
 msgstr "समग्र अनुभव"
 
-#: .\feedback\templates\feedback\submit.html:57
+#: .\feedback\templates\feedback\submit.html:62
 msgid "Submit"
 msgstr "जमा करें"
 
 #: .\feedback\templates\feedback\view.html:14
+#, fuzzy
+#| msgid "View Submitted Feedbacks"
+msgid "Your Submitted Feedbacks"
+msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखें"
+
+#: .\feedback\templates\feedback\view.html:24
+msgid "You"
+msgstr "आप"
+
+#: .\feedback\templates\feedback\view.html:66
 msgid "No Feedback has been submitted."
 msgstr "कोई प्रतिक्रियाऍं दर्ज नहीं की गई है।"
 
-#: .\feedback\templates\feedback\view.html:17
+#: .\feedback\templates\feedback\view.html:78
 msgid "Please Log In to view submitted Feedbacks."
 msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखने के लिए कृपया लॉग इन करें।"

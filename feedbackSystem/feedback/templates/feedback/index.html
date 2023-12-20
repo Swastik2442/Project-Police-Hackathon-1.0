@@ -1,9 +1,10 @@
 {% extends "feedback/home.html" %}
 {% load static %}
 {% load i18n %}
+{% load feedback_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% translate "Home" %}{% endblock %}
+{% block title %}{% translate "Home" %} - {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
@@ -12,6 +13,7 @@
 
 {% block content %}
 <div class="container infinite-container" id="main" style="width: auto;">
+    <h3>{% translate "Feedbacks by Everyone" %}</h3>
     <div>
         {% for detail in details %}
         <div class="card shadow-sm m-3">
@@ -24,6 +26,7 @@
                     {% translate 'Someone' %}
                     {% else %}
                     {{ detail.submittedBy.first_name }} {{ detail.submittedBy.last_name }}
+                    {% if request.user|has_group:"policeStaff" %}*{% endif %}
                     {% endif %}
                     <span class="text-body-secondary">
                         {% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %}

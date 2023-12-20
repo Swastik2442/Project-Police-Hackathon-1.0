@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'img/rp_logo.png' %}">
-    <title>{% block title %}{% translate "Home" %}{% endblock %} - {% translate "Police Feedback System" %}</title>
+    <title>{% block title %}{% translate "Home" %} - {% endblock %}{% translate "Police Feedback System" %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <style>
@@ -19,7 +19,7 @@
         }
         @media only screen and (max-width: 767px) {
             #main {
-                margin-bottom: 60px;
+                margin-bottom: 52px;
             }
         }
     </style>
@@ -27,25 +27,25 @@
 </head>
 <body style="background-color: ghostwhite">
     <div class="d-flex flex-column flex-shrink-0 p-3 border-end h-100 position-fixed d-none d-md-block" style="width: 340px; background-color: ghostwhite;">
-        <a href="/" class="d-flex align-items-center mb-4 mb-md-4 me-md-auto link-body-emphasis text-decoration-none">
-            <img src="{% static 'img/rp_logo.png' %}" alt="Rajasthan Police Logo" class="bi pe-none me-2" width="36" height="36" />
+        <a href="{{ request.path|urlencode }}" class="d-flex align-items-center mb-4 mb-md-4 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="{% static 'img/rp_logo.png' %}" alt="Rajasthan Police Logo" class="bi pe-none me-2" width="24" height="24" />
             <span class="fs-4">{% translate "Police Feedback System" %}</span>
         </a>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{% url 'feedbackIndex' %}" class="nav-link active" aria-current="page">
+                <a href="{% url 'feedbackIndex' %}" class="nav-link{% block linkHome %} active{% endblock %}" aria-current="page">
                     <img src="{% static 'img/home.svg' %}" alt="Home" width="24" height="24" class="bi pe-none me-2" />
                     {% translate "Home" %}
                 </a>
             </li>
             <li>
-                <a href="{% url 'feedbackSubmit' %}" class="nav-link link-body-emphasis">
+                <a href="{% url 'feedbackSubmit' %}" class="nav-link{% block linkSubmit %} link-body-emphasis{% endblock %}">
                     <img src="{% static 'img/add.svg' %}" alt="Submit Feedback" width="24" height="24" class="bi pe-none me-2" />
                     {% translate "Submit Feedback" %}
                 </a>
             </li>
             <li>
-                <a href="{% url 'feedbackView' %}" class="nav-link link-body-emphasis">
+                <a href="{% url 'feedbackView' %}" class="nav-link{% block linkProfile %} link-body-emphasis{% endblock %}">
                     <img src="{% static 'img/profile.svg' %}" alt="View Profile" width="24" height="24" class="bi pe-none me-2" />
                     {% translate "View Submitted Feedbacks" %}
                 </a>
@@ -61,7 +61,7 @@
               <img class="bi" src="{% static 'img/rp_logo.png' %}" width="32" height="32" role="img" aria-label="Rajasthan Police"></img>
             </a>
           </div>
-    
+ 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="{% url 'siteIndex' %}" class="nav-link px-2">{% translate "Home" %}</a></li>
             <li><a href="{% url 'feedbackIndex' %}" class="nav-link px-2">{% translate "Feedback" %}</a></li>
@@ -73,20 +73,18 @@
             <span class="me-2">{{ user.first_name }}</span>
             <a class="btn btn-outline-primary me-2" href="{% url 'siteLogout' %}?next={{ request.path|urlencode }}" role="button">{% translate "Log Out" %}</a>
             {% else %}
-            <a class="btn btn-outline-primary me-2" href="{% url 'siteLogin' %}" role="button">{% translate "Login" %}</a>
-            <a class="btn btn-primary" href="{% url 'siteSignup' %}" role="button">{% translate "Sign Up" %}</a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'siteLogin' %}?next={{ request.path|urlencode }}" role="button">{% translate "Login" %}</a>
+            <a class="btn btn-primary me-2" href="{% url 'siteSignup' %}" role="button">{% translate "Sign Up" %}</a>
             {% endif %}
             <form class="d-inline-block" action="{% url 'set_language' %}?next={{ request.get_full_path }}" method="post">{% csrf_token %}
                 <select class="form-select" name="language" aria-label="Select Language" onchange="this.form.submit()">
-                    <option value="en"{% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
                     <option value="hi"{% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %} selected{% endif %}>हिन्दी</option>
+                    <option value="en"{% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
                 </select>
             </form>
           </div>
         </header>
     </div>
-
-    
 
     {% block content %}
     {% endblock %}
@@ -95,17 +93,17 @@
         <ul class="nav nav-justified my-1">
             <li class="nav-link">
                 <a href="{% url 'feedbackIndex' %}">
-                    <img src="{% static 'img/home.svg' %}" alt="Home" width="36" height="36" />
+                    <img src="{% static 'img/home.svg' %}" alt="Home" width="24" height="24" />
                 </a>
             </li>
             <li class="nav-link">
                 <a href="{% url 'feedbackSubmit' %}">
-                    <img src="{% static 'img/add.svg' %}" alt="Submit Feedback" width="36" height="36" />
+                    <img src="{% static 'img/add.svg' %}" alt="Submit Feedback" width="24" height="24" />
                 </a>
             </li>
             <li class="nav-link">
                 <a href="{% url 'feedbackView' %}">
-                    <img src="{% static 'img/profile.svg' %}" alt="View Profile" width="36" height="36" />
+                    <img src="{% static 'img/profile.svg' %}" alt="View Profile" width="24" height="24" />
                 </a>
             </li>
         </ul>

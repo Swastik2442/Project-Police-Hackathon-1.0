@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-16 17:12+0530\n"
+"POT-Creation-Date: 2023-12-20 17:36+0530\n"
 "PO-Revision-Date: 2023-12-19 16:17+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\base\templates\base\home.html:11 .\base\templates\base\home.html:27
+#: .\base\templates\base\index.html:5
 msgid "Home"
 msgstr "होम"
 
@@ -37,54 +38,54 @@ msgstr "स्टाफ डैशबोर्ड"
 msgid "Log Out"
 msgstr "लॉग आउट"
 
-#: .\base\templates\base\home.html:37 .\base\templates\base\login.html:6
-#: .\base\templates\base\login.html:12 .\base\templates\base\login.html:24
+#: .\base\templates\base\home.html:37 .\base\templates\base\login.html:5
+#: .\base\templates\base\login.html:11 .\base\templates\base\login.html:23
 msgid "Login"
 msgstr "लॉग इन"
 
-#: .\base\templates\base\home.html:38 .\base\templates\base\signup.html:10
-#: .\base\templates\base\signup.html:49
+#: .\base\templates\base\home.html:38 .\base\templates\base\signup.html:5
+#: .\base\templates\base\signup.html:11 .\base\templates\base\signup.html:50
 msgid "Sign Up"
 msgstr "साइन अप"
 
-#: .\base\templates\base\login.html:14 .\base\templates\base\login.html:22
-#: .\base\templates\base\signup.html:28
+#: .\base\templates\base\login.html:13 .\base\templates\base\login.html:21
+#: .\base\templates\base\signup.html:29
 msgid "Phone Number"
 msgstr "फ़ोन नंबर"
 
-#: .\base\templates\base\login.html:18 .\base\templates\base\login.html:22
-#: .\base\templates\base\signup.html:35
+#: .\base\templates\base\login.html:17 .\base\templates\base\login.html:21
+#: .\base\templates\base\signup.html:36
 msgid "Password"
 msgstr "कूटशब्द"
 
-#: .\base\templates\base\login.html:22
+#: .\base\templates\base\login.html:21
 msgid "Invalid"
 msgstr "अमान्य"
 
-#: .\base\templates\base\login.html:25
+#: .\base\templates\base\login.html:24
 msgid "Forgot your Password?"
 msgstr "कूटशब्द भूल गए?"
 
-#: .\base\templates\base\login.html:26
+#: .\base\templates\base\login.html:25
 msgid "New User?"
 msgstr "नए यूजर?"
 
-#: .\base\templates\base\signup.html:14
+#: .\base\templates\base\signup.html:15
 msgid "First Name"
 msgstr "मुख्य नाम"
 
-#: .\base\templates\base\signup.html:18
+#: .\base\templates\base\signup.html:19
 msgid "Last Name"
 msgstr "कुलनाम"
 
-#: .\base\templates\base\signup.html:24
+#: .\base\templates\base\signup.html:25
 msgid "Email ID"
 msgstr "ईमेल आईडी"
 
-#: .\base\templates\base\signup.html:40
+#: .\base\templates\base\signup.html:41
 msgid "Confirm Password"
 msgstr "कूटशब्द की पुष्टि करें"
 
-#: .\base\templates\base\signup.html:47
+#: .\base\templates\base\signup.html:48
 msgid "An error occured while processing your request. Please try again later."
 msgstr "कृपया बाद में पुन: प्रयास करें।"

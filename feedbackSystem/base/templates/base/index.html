@@ -1,5 +1,11 @@
 {% extends 'base/home.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title%}{% translate "Home" %} - {% endblock %}
 
 {% block content %}
-Hello World! You're at Website Home Page.
+<div class="container">
+    Hello World! You're at Website Home Page.
+</div>
 {% endblock %}

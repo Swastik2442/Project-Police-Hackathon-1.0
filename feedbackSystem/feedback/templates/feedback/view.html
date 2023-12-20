@@ -1,20 +1,93 @@
 {% extends 'feedback/home.html' %}
 {% load i18n %}
+{% load feedback_tags %}
+
+{% block title %}{% translate "View Submitted Feedbacks" %} - {% endblock %}
+
+{% block linkHome %} link-body-emphasis{% endblock %}
+{% block linkSubmit %} link-body-emphasis{% endblock %}
+{% block linkProfile %} active{% endblock %}
 
 {% block content %}
-<div class="container" id="main" style="width: auto;">
+
+<div class="container infinite-container" id="main" style="width: auto;">
+    <h3>{% translate "Your Submitted Feedbacks" %}</h3>
     {% if user.is_authenticated %}
-    {% for feedback in feedbacks %}
     <div>
-        {{ feedback.feedbackDate }}
-        <p>{{ feedback.description }}</p>
-        {{ feedback.forStation }}
+        {% for feedback in feedbacks %}
+        <div class="card shadow-sm m-3">
+            <div class="card-body">
+                <h6 class="card-subtitle text-body-secondary float-end mt-1">
+                    {{ feedback.feedbackDate }}
+                </h6>
+                <h5 class="card-title">
+                    {% translate 'You' %}
+                    <span class="text-body-secondary">
+                        {% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %}
+                        felt
+                        {% if feedback.experience is 1 %}
+                        {% translate 'Very Bad' %}
+                        {% elif feedback.experience is 2 %}
+                        {% translate 'Bad' %}
+                        {% elif feedback.experience is 3 %}
+                        {% translate 'Neutral' %}
+                        {% elif feedback.experience is 4 %}
+                        {% translate 'Good' %}
+                        {% elif feedback.experience is 5 %}
+                        {% translate 'Very Good' %}
+                        {% endif %}
+                        {% endif %}
+                        {% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %}
+                        ने
+                        {% if feedback.experience is 1 %}
+                        {% translate 'Very Bad' %}
+                        {% elif feedback.experience is 2 %}
+                        {% translate 'Bad' %}
+                        {% elif feedback.experience is 3 %}
+                        {% translate 'Neutral' %}
+                        {% elif feedback.experience is 4 %}
+                        {% translate 'Good' %}
+                        {% elif feedback.experience is 5 %}
+                        {% translate 'Very Good' %}
+                        {% endif %}
+                        महसूस किया
+                        {% endif %}
+                    </span>
+                </h5>
+                <h6 class="card-subtitle text-body-tertiary mb-2">
+                    {{ feedback.forStation }}
+                </h6>
+                <p class="card-text">{{ feedback.description }}</p>
+                <!-- <button class="btn card-link">Like</button> --> <!-- Can be Implemented Later -->
+                <!-- <button class="btn card-link">Dislike</button> -->
+            </div>
+        </div>
+        {% empty %}
+        <p>{% translate "No Feedback has been submitted." %}</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>{% translate "No Feedback has been submitted." %}</p>
-    {% endfor %}
+
+    {% if feedbacks.has_next %}
+    <a class="infinite-more-link" href="?page={{ feedbacks.next_page_number }}">More</a>
+    {% endif %}
+
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
     {% else %}
     <p>{% translate "Please Log In to view submitted Feedbacks." %}</p>
     {% endif %}
 </div>
+
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        onBeforePageLoad: function () {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function ($items) {
+            $('.loading').hide();
+        }
+    });
+</script>
 {% endblock %}
