@@ -1,0 +1,23 @@
+{% extends 'base/home.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title%}{% translate "Verify OTP" %} - {% endblock %}
+
+{% block content %}
+<div class="container border rounded-5 shadow" style="max-width: 540px; background-color: white;">
+    <form class="p-5 text-center" method="post">{% csrf_token %}
+        <img class="mb-3" src="{% static 'img/rp_logo.png' %}" width="72" height="72"/>
+        <h6 class="mb-3">{% translate " Verify the OTP sent to your Phone Number" %}<br>{{ countryCode }} {{ phone }}</h6>
+        <div class="row mb-3">
+            <label for="inputPassword" class="form-label">{% translate "OTP" %}</label>
+            <input class="form-control" type="number" id="inputOTP" name="otp" min="1000" max="9999" required>
+        </div>
+        {% if error %}
+        <p>{% translate "Invalid OTP" %}</p>
+        <a href="{% url 'siteOTPResend' %}">Resend OTP</a>
+        {% endif %}
+        <button class="btn text-bg-dark text-white rounded-pill col-8 mb-3" type="submit">{% translate "Verify" %}</button>
+    </form>
+</div>
+{% endblock %}

@@ -13,11 +13,11 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="inputFirstName" class="form-label">{% translate "First Name" %}*</label>
-                    <input type="text" id="inputFirstName" name="firstName" class="form-control" required>
+                    <input type="text" id="inputFirstName" name="firstName" class="form-control" pattern="[A-Za-z ]+" minlength="3" maxlength="50" required>
                 </div>
                 <div class="col-md-6">
                     <label for="inputLastName" class="form-label">{% translate "Last Name" %}</label>
-                    <input type="text" id="inputLastName" name="lastName" class="form-control">
+                    <input type="text" id="inputLastName" name="lastName" class="form-control" pattern="[A-Za-z ]+" minlength="3" maxlength="50">
                 </div>
             </div>
             <div class="row mb-3">
@@ -27,8 +27,12 @@
                 </div>
                 <div class="col-md-6">
                     <label for="inputPhone" class="form-label">{% translate "Phone Number" %}*</label>
-                    <input type="number" id="inputPhone" name="phone" class="form-control" minlength="10" maxlength="10"
-                        min="1111111111" max="9999999999" required>
+                    <div class="input-group">
+                        <span class="input-group-text" id="phoneCode">+91</span>
+                        <input type="number" id="inputPhone" name="phone" class="form-control"
+                            minlength="10" maxlength="10" min="1111111111" max="9999999999" aria-label="Phone Number" aria-describedby="phoneCode" required>
+                    </div>
+                    
                 </div>
             </div>
             <div class="row mb-3">

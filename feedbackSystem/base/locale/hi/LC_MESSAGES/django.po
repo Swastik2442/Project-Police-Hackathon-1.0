@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-20 17:36+0530\n"
-"PO-Revision-Date: 2023-12-19 16:17+0530\n"
+"PO-Revision-Date: 2023-12-21 11:12+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgid "Login"
 msgstr "लॉग इन"
 
 #: .\base\templates\base\home.html:38 .\base\templates\base\signup.html:5
-#: .\base\templates\base\signup.html:11 .\base\templates\base\signup.html:50
+#: .\base\templates\base\signup.html:11 .\base\templates\base\signup.html:54
 msgid "Sign Up"
 msgstr "साइन अप"
 
@@ -54,7 +54,7 @@ msgid "Phone Number"
 msgstr "फ़ोन नंबर"
 
 #: .\base\templates\base\login.html:17 .\base\templates\base\login.html:21
-#: .\base\templates\base\signup.html:36
+#: .\base\templates\base\signup.html:40
 msgid "Password"
 msgstr "कूटशब्द"
 
@@ -82,10 +82,30 @@ msgstr "कुलनाम"
 msgid "Email ID"
 msgstr "ईमेल आईडी"
 
-#: .\base\templates\base\signup.html:41
+#: .\base\templates\base\signup.html:45
 msgid "Confirm Password"
 msgstr "कूटशब्द की पुष्टि करें"
 
-#: .\base\templates\base\signup.html:48
+#: .\base\templates\base\signup.html:52
 msgid "An error occured while processing your request. Please try again later."
 msgstr "कृपया बाद में पुन: प्रयास करें।"
+
+#: .\base\templates\base\verify.html:5
+msgid "Verify OTP"
+msgstr "ओटीपी वैरिफाई करें"
+
+#: .\base\templates\base\verify.html:11
+msgid " Verify the OTP sent to your Phone Number"
+msgstr "आपके फ़ोन नंबर पर भेजे गए ओटीपी को वैरिफाई करें"
+
+#: .\base\templates\base\verify.html:13
+msgid "OTP"
+msgstr "ओटीपी"
+
+#: .\base\templates\base\verify.html:17
+msgid "Invalid OTP"
+msgstr "अमान्य ओटीपी"
+
+#: .\base\templates\base\verify.html:20
+msgid "Verify"
+msgstr "वैरिफाई"

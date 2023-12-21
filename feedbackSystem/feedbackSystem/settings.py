@@ -113,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+COUNTRY_E146_CODE = '+91'
+
 LANGUAGE_CODE = 'hi'
 
 TIME_ZONE = 'Asia/Kolkata'

@@ -1,1 +1,4 @@
 DJANGO_SECRET_KEY="your-secret-key-here"
+TWILIO_ACCOUNT_SID="your-account-sid-here"
+TWILIO_AUTH_TOKEN="your-auth-token-here"
+TWILIO_PHONE_NUMBER="your-phone-number-here"
