@@ -1,11 +1,14 @@
 from datetime import datetime
 
 from django.shortcuts import render, redirect
-from django.http import HttpRequest
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import AnonymousUser
+from django.utils.timezone import make_aware
 
+from feedbackSystem.settings import LANGUAGE_CODE
+from base.messaging import MessageHandler
+from .utils import getMessageFromFeedback
 from .models import Division, PoliceStation, Feedback
 
 jsTimeFormat = "%Y-%m-%dT%H:%M"
@@ -34,18 +37,18 @@ def submitFeedback_view(request: HttpRequest):
         stationID = request.POST.get('stationID')
         experience = request.POST.get('experience')
         description = request.POST.get('description')
-        feedbackDate = datetime.now()
+        feedbackDate = make_aware(datetime.now())
 
         incidentDate = request.POST.get('incidentDate', '')
         reportedDate = request.POST.get('reportedDate', '')
         if incidentDate == '':
             incidentDate = None
         else:
-            incidentDate = datetime.strptime(incidentDate, jsTimeFormat)
+            incidentDate = make_aware(datetime.strptime(incidentDate, jsTimeFormat))
         if reportedDate == '':
             reportedDate = None
         else:
-            reportedDate = datetime.strptime(reportedDate, jsTimeFormat)
+            reportedDate = make_aware(datetime.strptime(reportedDate, jsTimeFormat))
         
         user = request.user
         if isinstance(user, AnonymousUser):
@@ -64,6 +67,9 @@ def submitFeedback_view(request: HttpRequest):
                 feedbackDate=feedbackDate
                 )
             new.save()
+            if user != None and user.get_username().isdigit():
+                message = getMessageFromFeedback(new, request.COOKIES.get('django_language', LANGUAGE_CODE))
+                MessageHandler(user.get_username()).sendMessage(message)
             return redirect(request.GET.get("next", "feedbackView"))
         except Exception as err:
             print(err)

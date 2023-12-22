@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-20 17:51+0530\n"
+"POT-Creation-Date: 2023-12-22 18:33+0530\n"
 "PO-Revision-Date: 2023-12-20 17:36+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\access\templates\access\home.html:12
-#: .\access\templates\access\home.html:173
-#: .\access\templates\access\home.html:297
+#: .\access\templates\access\home.html:172
+#: .\access\templates\access\home.html:296
 msgid "Dashboard"
 msgstr "डैशबोर्ड"
 
@@ -29,74 +29,92 @@ msgstr "डैशबोर्ड"
 msgid "Police Feedback System"
 msgstr "पुलिस प्रतिक्रिया प्रणाली"
 
-#: .\access\templates\access\home.html:197
+#: .\access\templates\access\home.html:180
+#: .\access\templates\access\users.html:5
+#: .\access\templates\access\users.html:6
 msgid "Users"
 msgstr "उपयोगकर्ता"
 
-#: .\access\templates\access\home.html:233
+#: .\access\templates\access\home.html:232
 msgid "Current Month"
 msgstr "वर्तमान माह"
 
-#: .\access\templates\access\home.html:241
+#: .\access\templates\access\home.html:240
 msgid "Last Quarter"
 msgstr "आख़िरी तिमाही"
 
-#: .\access\templates\access\home.html:249
+#: .\access\templates\access\home.html:248
 msgid "Social Engagement"
 msgstr "सामाजिक अनुबंध"
 
-#: .\access\templates\access\home.html:257
+#: .\access\templates\access\home.html:256
 msgid "Year-end Report"
 msgstr "साल के अंत की रिपोर्ट"
 
-#: .\access\templates\access\home.html:271
+#: .\access\templates\access\home.html:270
 msgid "Toggle Language"
 msgstr "भाषा टॉगल करें"
 
-#: .\access\templates\access\home.html:279
+#: .\access\templates\access\home.html:278
 msgid "Settings"
 msgstr "सेटिंगस"
 
-#: .\access\templates\access\home.html:287
+#: .\access\templates\access\home.html:286
 msgid "Log Out"
 msgstr "लॉग आउट"
 
-#: .\access\templates\access\home.html:300
+#: .\access\templates\access\home.html:299
 msgid "Home"
 msgstr "होम"
 
-#: .\access\templates\access\home.html:301
+#: .\access\templates\access\home.html:300
 msgid "Feedbacks"
 msgstr "प्रतिक्रियाऍं"
 
-#: .\access\templates\access\home.html:309
+#: .\access\templates\access\home.html:308
 msgid "This year"
 msgstr "इस साल"
 
-#: .\access\templates\access\index.html:9
+#: .\access\templates\access\index.html:8
 msgid "Top Police Stations"
 msgstr "शीर्ष पुलिस थाने"
 
-#: .\access\templates\access\index.html:15
+#: .\access\templates\access\index.html:14
 msgid "Station Name"
 msgstr "थाने का नाम"
 
-#: .\access\templates\access\index.html:16
+#: .\access\templates\access\index.html:15
+#: .\access\templates\access\users.html:18
 msgid "No. of Feedbacks"
 msgstr "प्रतिक्रियाओ की संख्या"
 
-#: .\access\templates\access\index.html:17
+#: .\access\templates\access\index.html:16
+#: .\access\templates\access\users.html:19
 msgid "Positive Experience"
 msgstr "सकारात्मक अनुभव"
 
-#: .\access\templates\access\index.html:18
+#: .\access\templates\access\index.html:17
+#: .\access\templates\access\users.html:20
 msgid "Neutral Experience"
 msgstr "निष्पक्ष अनुभव"
 
-#: .\access\templates\access\index.html:19
+#: .\access\templates\access\index.html:18
+#: .\access\templates\access\users.html:21
 msgid "Negative Experience"
 msgstr "नकारात्मक अनुभव"
 
-#: .\access\templates\access\index.html:49
+#: .\access\templates\access\index.html:48
 msgid "Feedbacks Submitted"
 msgstr "जमा की गई प्रतिक्रियाऍं"
+
+#: .\access\templates\access\users.html:11
+msgid "Top Users"
+msgstr "शीर्ष उपयोगकर्ता"
+
+#: .\access\templates\access\users.html:17
+msgid "User Name"
+msgstr "उपयोगकर्ता का नाम"
+
+#: .\access\templates\access\users.html:51
+msgid "User Accounts"
+msgstr "उपयोगकर्ता खाते"

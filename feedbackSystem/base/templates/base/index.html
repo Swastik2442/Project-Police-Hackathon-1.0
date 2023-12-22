@@ -2,10 +2,169 @@
 {% load static %}
 {% load i18n %}
 
-{% block title%}{% translate "Home" %} - {% endblock %}
+{% block title %}{% translate "Home" %} - {% endblock %}
+{% block scripts %}
+<style>
+    .icon-square {
+        width: 3rem;
+        height: 3rem;
+        border-radius: .75rem;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="share-message" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125ZM8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+    </symbol>
+    <symbol id="chat-message" viewBox="0 0 16 16">
+        <path
+            d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+    </symbol>
+    <symbol id="robot" viewBox="0 0 16 16">
+        <path
+            d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z" />
+        <path
+            d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5" />
+    </symbol>
+    <symbol id="translate" viewBox="0 0 16 16">
+        <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z"/>
+        <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z"/>
+    </symbol>
+    <symbol id="phone" viewBox="0 0 16 16">
+        <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+    </symbol>
+    <symbol id="graph-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
+    </symbol>
+</svg>
+
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="{% static 'img/rp_logo.png' %}" alt="" width="72" height="72">
+    <h1 class="display-5 fw-bold text-body-emphasis">Police Feedback System</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+            The Project by team Binary Brigade, for the showcase at Rajasthan Police Hackathon 1.0, is all about making things better between the police and the community.<br>"We've created a system that's easy for everyone to use, lets people share feedback in real-time, keeps things secure, and helps police understand what the community needs. It's all about working together!"
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a role="button" href="{% url 'feedbackIndex' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                Submission Portal
+            </a>
+            <a role="button" href="{% url 'accessIndex' %}" class="btn btn-outline-secondary btn-lg px-4">
+                Analysis System
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 py-5 my-5" id="features">
+    <h2 class="pb-2 border-bottom text-center">Features</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#share-message"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Submission Portal</h3>
+                <p>
+                    Empower community engagement by providing a user-friendly platform for citizens to submit valuable feedback, enhancing transparency and collaboration between the police and the public.
+                </p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#chat-message"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">SMS System</h3>
+                <p>
+                    Enhance accessibility with a seamless SMS feedback mechanism, allowing citizens to easily share their experiences and concerns with law enforcement, fostering a direct and immediate communication channel.
+                </p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#robot"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Chat Bot</h3>
+                <p>
+                    Introduce a cutting-edge Chat Bot for instant interaction, answering queries, and guiding users through the feedback process. Simplify communication and bridge the gap between the community and law enforcement.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#translate"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Bilingual Support</h3>
+                <p>
+                    Fostering inclusivity by incorporating Bilingual Support, allowing citizens to submit feedback comfortably in their preferred language, enhancing communication and understanding between the community and law enforcement.
+                </p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#phone"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Mobile-first Approach</h3>
+                <p>
+                    Revolutionizing accessibility and prioritizing convenient community engagement through smartphones. Ensuring citizens can easily connect, submit feedback, and participate in shaping effective policing on-the-go.
+                </p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#graph-up"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Analysis System</h3>
+                <p>
+                    Harness the power of data analytics with a Feedback Analysis Portal, providing law enforcement agencies with valuable insights derived from citizen feedback. Facilitate informed decision-making and continuous improvement in community policing.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
 <div class="container">
-    Hello World! You're at Website Home Page.
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item px-2 text-body-secondary">Utkarsh Tailor</li>
+            <li class="nav-item px-2 text-body-secondary">Swastik Kulshreshtha</li>
+            <li class="nav-item px-2 text-body-secondary">Saurabh Saini</li>
+            <li class="nav-item px-2 text-body-secondary">Rajat Paliwal</li>
+        </ul>
+        <p class="text-center text-body-secondary">© Binary Brigade - Rajasthan Police Hackathon 1.0</p>
+    </footer>
 </div>
 {% endblock %}

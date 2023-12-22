@@ -22,7 +22,7 @@
                     {{ detail.feedbackDate }}
                 </h6>
                 <h5 class="card-title">
-                    {% if not detail.submittedBy %}
+                    {% if not detail.submittedBy or detail.submittedBy.first_name == '' %}
                     {% translate 'Someone' %}
                     {% else %}
                     {{ detail.submittedBy.first_name }} {{ detail.submittedBy.last_name }}

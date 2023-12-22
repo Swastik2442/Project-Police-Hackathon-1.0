@@ -62,7 +62,7 @@ msgstr "साइन अप"
 
 #: .\feedback\templates\feedback\index.html:16
 msgid "Feedbacks by Everyone"
-msgstr "हर किसी की प्रतिक्रियाएँ"
+msgstr "सबके द्वारा दी गई प्रतिक्रियाएँ"
 
 #: .\feedback\templates\feedback\index.html:26
 msgid "Someone"
@@ -143,8 +143,6 @@ msgid "Submit"
 msgstr "जमा करें"
 
 #: .\feedback\templates\feedback\view.html:14
-#, fuzzy
-#| msgid "View Submitted Feedbacks"
 msgid "Your Submitted Feedbacks"
 msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखें"
 
