@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("base.urls")),
     path("feedback/", include("feedback.urls")),
     path("access/", include("access.urls")),
+    path("chat/", include("chat.urls")),
 ]

@@ -1,0 +1,290 @@
+{% spaceless %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{% if request.COOKIES.django_language %}{{ request.COOKIES.django_language }}{% else %}{{ LANGUAGE_CODE }}{% endif %}" class="m-0 h-100 overflow-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'img/rp_logo.png' %}">
+    <title>{% translate "Chat" %} - {% translate "Police Feedback System" %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">    
+</head>
+
+<body class="m-0 h-100 overflow-hidden" style="background-color: ghostwhite" onload="scrollToEnd()">
+    <div class="container">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="{{ request.path|urlencode }}" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img class="bi" src="{% static 'img/rp_logo.png' %}" width="32" height="32" role="img" aria-label="Rajasthan Police" />
+                </a>
+            </div>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'siteIndex' %}" class="nav-link px-2">{% translate "Home" %}</a></li>
+                <li><a href="{% url 'feedbackIndex' %}" class="nav-link px-2">{% translate "Feedback" %}</a></li>
+                <li><a href="{% url 'accessIndex' %}" class="nav-link px-2">{% translate "Staff Dashboard" %}</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                {% if user.is_authenticated %}
+                <span class="me-2">{{ user.first_name }}</span>
+                <a class="btn btn-outline-primary me-2" href="{% url 'siteLogout' %}?next={{ request.path|urlencode }}" role="button">{% translate "Log Out" %}</a>
+                {% else %}
+                <a class="btn btn-outline-primary me-2" href="{% url 'siteLogin' %}?next={{ request.path|urlencode }}" role="button">{% translate "Login" %}</a>
+                <a class="btn btn-primary me-2" href="{% url 'siteSignup' %}" role="button">{% translate "Sign Up" %}</a>
+                {% endif %}
+                <form class="d-inline-block" action="{% url 'set_language' %}?next={{ request.get_full_path }}" method="post">{% csrf_token %}
+                    <select class="form-select" name="language" aria-label="Select Language" onchange="this.form.submit()">
+                        <option value="hi" {% if "hi" == LANGUAGE_CODE or "hi" == request.COOKIES.django_language %} selected{% endif %}>हिन्दी</option>
+                        <option value="en" {% if "en" == LANGUAGE_CODE or "en" == request.COOKIES.django_language %} selected{% endif %}>English</option>
+                    </select>
+                </form>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <div class="chat-history border rounded overflow-y-scroll p-4" id="main">
+            <ul class="mb-0 p-0" id="chat">
+                {% for message in messages %}
+                {% if message.byBot %}
+                <li>
+                    <div class="message-data">
+                        <span class="message-data-time">{{ message.timestamp }}</span>
+                    </div>
+                    <div class="message bot-message">{{ message.text }}</div>
+                </li>
+                {% else %}
+                <li class="clearfix">
+                    <div class="message-data text-end">
+                        <span class="message-data-time">{{ message.timestamp }}</span>
+                    </div>
+                    <div class="message user-message float-end">{{ message.text }}</div>
+                </li>
+                {% endif %}
+                {% empty %}
+                <p class="text-center text-black-50" id="startChat">
+                    {% translate "Send a Message to start the Chat" %}
+                </p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="container fixed-bottom my-3">
+        <div class="input-group">
+            <textarea id="message" class="form-control rounded-start-pill" placeholder="{% translate 'Message' %}" aria-label="{% translate 'Message' %}" rows="1" maxlength="512"></textarea>
+            <button type="button" onclick="startSpeech()" title="{% translate 'Speak' %}" class="btn border-top border-bottom" style="background-color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+                </svg>
+            </button>
+            <button type="button" onclick="sendMessage()" title="{% translate 'Send' %}" class="btn btn-outline-success rounded-end-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+      
+      <!-- Modals -->
+      <div class="modal fade" id="modalStations" tabindex="-1" aria-labelledby="modalStationsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalStationsLabel">{% translate "Select the Division and Police Station" %}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <label for="selectDivision" class="form-label">{% translate "Division" %}</label>
+                        <select class="form-select" id="selectDivision" name="divisionID" onchange="getStations()" required>
+                            <option value="" selected>{% translate "Select" %}</option>
+                            {% for i in divisions %}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="selectStation" class="form-label">{% translate "Police Station" %}</label>
+                        <select class="form-select" id="selectStation" name="stationID" required>
+                            <option value="" selected>{% translate "Select" %}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "Close" %}</button>
+              <button type="button" class="btn btn-primary">{% translate "Submit" %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalDates" tabindex="-1" aria-labelledby="modalDatesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalDatesLabel">{% translate "Select the Incident Date and Reported Date" %}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <label for="inputIncidentDate" class="form-label">{% translate "Incident Date" %}</label>
+                        <input class="form-control" type="datetime-local" id="inputIncidentDate" min="1948-01-01T00:00:00" max="{% now 'Y-m-d' %}T{% now 'H:i:s' %}" name="incidentDate">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputReportedDate" class="form-label">{% translate "Reported Date" %}</label>
+                        <input class="form-control" type="datetime-local" id="inputReportedDate" min="1948-01-01T00:00:00" max="{% now 'Y-m-d' %}T{% now 'H:i:s' %}" name="reportedDate">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "Close" %}</button>
+              <button type="button" class="btn btn-primary">{% translate "Submit" %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalFeedbacks" tabindex="-1" aria-labelledby="modalFeedbacksLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalFeedbacksLabel">{% translate "Select the Feedback" %}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <label for="selectFeedback" class="form-label">{% translate "Feedback" %}</label>
+                    <select class="form-select" id="selectFeedback" name="feedbackID">
+                        <option value="" selected>{% translate "Select" %}</option>
+                        {% for i in feedbacks %}
+                        <option value="{{ i.id }}">{{ i.forStation }} ({{ i.feedbackDate }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "Close" %}</button>
+              <button type="button" class="btn btn-primary">{% translate "Submit" %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+        function scrollToEnd() {
+            var main = document.getElementById("main");
+            main.scrollTop = main.scrollHeight;
+        }
+        function startSpeech() {
+            if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                var speechRecognizer = new webkitSpeechRecognition();
+                speechRecognizer.continuous = false;
+                speechRecognizer.interimResults = true;
+                speechRecognizer.lang = "{% if 'hi' == LANGUAGE_CODE or 'hi' == request.COOKIES.django_language %}hi-IN{% else %}en-IN{% endif %}";
+                speechRecognizer.start();
+                
+                var result = document.getElementById('message');
+                var oldValue = result.value;
+                var finalTranscripts = '';
+
+                speechRecognizer.onresult = function (event) {
+                    var interimTranscripts = '';
+                    for (var i = event.resultIndex; i < event.results.length; i++) {
+                        var transcript = event.results[i][0].transcript;
+                        if (event.results[i].isFinal) {
+                            finalTranscripts += transcript;
+                        } else {
+                            interimTranscripts += transcript;
+                        }
+                    }
+                    result.value = finalTranscripts + interimTranscripts;
+                };
+                speechRecognizer.onend = function (event) {
+                    result.value = oldValue + ' ' + result.value;
+                };
+            }
+        }
+        function addMessage(message, type) {
+            var item = '';
+            var date = new Date().toLocaleString();
+            if (type == 0) {
+                item = `<li class="clearfix">
+                    <div class="message-data text-end">
+                        <span class="message-data-time">${date}</span>
+                    </div>
+                    <div class="message user-message float-end">${message}</div>
+                </li>`
+            } else if (type == 1) {
+                item = `<li>
+                    <div class="message-data">
+                        <span class="message-data-time">${date}</span>
+                    </div>
+                    <div class="message bot-message">${message}</div>
+                </li>`
+            }
+            var list = document.getElementById('chat');
+            list.innerHTML = list.innerHTML + item;
+        }
+        function sendMessage() {
+            var messageElement = document.getElementById('message');
+            var message = messageElement.value;
+            var params = `message=${encodeURIComponent(message)}`;
+            if (message != '') {
+                addMessage(message, 0);
+                document.getElementById('startChat').classList.add('d-none');
+                scrollToEnd();
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        data = JSON.parse(this.responseText);
+                        console.log(data);
+                        if (data.error) {
+                            addMessage("{% translate 'An Error Occured while processing your Request. Please try again later.' %}", 1);
+                        } else {
+
+                        }
+                        scrollToEnd();
+                        messageElement.value = '';
+                    }
+                };
+                xhttp.open("POST", "{% url 'APIaddMessage' chat.id %}", true);
+                xhttp.setRequestHeader('X-CSRFToken', "{{ csrf_token }}")
+                xhttp.send(params);
+            }
+        }
+        function getStations() {
+            var stationSelect = document.getElementById('selectStation');
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    data = JSON.parse(this.responseText);
+                    var stationData = "<option value='' selected>{% translate 'Select' %}</option>";
+                    for (var i = 0; i < data['stations'].length; i++) {
+                        var station = data['stations'][i];
+                        stationData += `\n<option value='${station[0]}'>${station[1]}</option>`;
+                    }
+                    stationSelect.innerHTML = stationData;
+                }
+            };
+            var divisionID = document.getElementById('selectDivision').value
+            xhttp.open("GET", `{% url 'APIstations' %}?divisionID=${divisionID}`, true);
+            xhttp.send()
+        }
+    </script>
+
+</body>
+
+</html>
+{% endspaceless %}

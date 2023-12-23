@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 18:33+0530\n"
+"POT-Creation-Date: 2023-12-23 19:23+0530\n"
 "PO-Revision-Date: 2023-12-20 17:36+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -17,61 +17,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\access\templates\access\home.html:12
-#: .\access\templates\access\home.html:172
-#: .\access\templates\access\home.html:296
+#: .\access\templates\access\home.html:13
+#: .\access\templates\access\home.html:173
+#: .\access\templates\access\home.html:297
 msgid "Dashboard"
 msgstr "डैशबोर्ड"
 
-#: .\access\templates\access\home.html:12
-#: .\access\templates\access\home.html:140
-#: .\access\templates\access\home.html:161
+#: .\access\templates\access\home.html:13
+#: .\access\templates\access\home.html:141
+#: .\access\templates\access\home.html:162
 msgid "Police Feedback System"
 msgstr "पुलिस प्रतिक्रिया प्रणाली"
 
-#: .\access\templates\access\home.html:180
+#: .\access\templates\access\home.html:181
 #: .\access\templates\access\users.html:5
 #: .\access\templates\access\users.html:6
 msgid "Users"
 msgstr "उपयोगकर्ता"
 
-#: .\access\templates\access\home.html:232
+#: .\access\templates\access\home.html:233
 msgid "Current Month"
 msgstr "वर्तमान माह"
 
-#: .\access\templates\access\home.html:240
+#: .\access\templates\access\home.html:241
 msgid "Last Quarter"
 msgstr "आख़िरी तिमाही"
 
-#: .\access\templates\access\home.html:248
+#: .\access\templates\access\home.html:249
 msgid "Social Engagement"
 msgstr "सामाजिक अनुबंध"
 
-#: .\access\templates\access\home.html:256
+#: .\access\templates\access\home.html:257
 msgid "Year-end Report"
 msgstr "साल के अंत की रिपोर्ट"
 
-#: .\access\templates\access\home.html:270
+#: .\access\templates\access\home.html:271
 msgid "Toggle Language"
 msgstr "भाषा टॉगल करें"
 
-#: .\access\templates\access\home.html:278
+#: .\access\templates\access\home.html:279
 msgid "Settings"
 msgstr "सेटिंगस"
 
-#: .\access\templates\access\home.html:286
+#: .\access\templates\access\home.html:287
 msgid "Log Out"
 msgstr "लॉग आउट"
 
-#: .\access\templates\access\home.html:299
+#: .\access\templates\access\home.html:300
 msgid "Home"
 msgstr "होम"
 
-#: .\access\templates\access\home.html:300
+#: .\access\templates\access\home.html:301
 msgid "Feedbacks"
 msgstr "प्रतिक्रियाऍं"
 
-#: .\access\templates\access\home.html:308
+#: .\access\templates\access\home.html:309
 msgid "This year"
 msgstr "इस साल"
 

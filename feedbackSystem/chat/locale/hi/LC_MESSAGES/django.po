@@ -1,0 +1,112 @@
+# Hindi Translation File for base app in feedbackSystem.
+# Copyright (C) 2023 Binary Brigade
+# This file is distributed under the same license as the feedbackSystem package.
+# Swastik Kulshreshtha <swastik2442@gmail.com>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: feedbackSystem 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-23 19:23+0530\n"
+"PO-Revision-Date: 2023-12-23 19:23+0530\n"
+"Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
+"Language: Hindi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\chat\templates\chat\index.html:13
+msgid "Chat"
+msgstr "चैट"
+
+#: .\chat\templates\chat\index.html:13
+msgid "Police Feedback System"
+msgstr "पुलिस प्रतिक्रिया प्रणाली"
+
+#: .\chat\templates\chat\index.html:30
+msgid "Home"
+msgstr "होम"
+
+#: .\chat\templates\chat\index.html:31 .\chat\templates\chat\index.html:195
+msgid "Feedback"
+msgstr "प्रतिक्रिया"
+
+#: .\chat\templates\chat\index.html:32
+msgid "Staff Dashboard"
+msgstr "स्टाफ डैशबोर्ड"
+
+#: .\chat\templates\chat\index.html:38
+msgid "Log Out"
+msgstr "लॉग आउट"
+
+#: .\chat\templates\chat\index.html:40
+msgid "Login"
+msgstr "लॉग इन"
+
+#: .\chat\templates\chat\index.html:41
+msgid "Sign Up"
+msgstr "साइन अप"
+
+#: .\chat\templates\chat\index.html:74
+msgid "Send a Message to start the Chat"
+msgstr "चैट शुरू करने के लिए एक संदेश भेजें"
+
+#: .\chat\templates\chat\index.html:111
+msgid "Message"
+msgstr "संदेश"
+
+#: .\chat\templates\chat\index.html:112
+msgid "Speak"
+msgstr "बोलें"
+
+#: .\chat\templates\chat\index.html:118
+msgid "Send"
+msgstr "भेजें"
+
+#: .\chat\templates\chat\index.html:131
+msgid "Select the Division and Police Station"
+msgstr "विभाग और पुलिस थाने का चयन करें"
+
+#: .\chat\templates\chat\index.html:137
+msgid "Division"
+msgstr "विभाग"
+
+#: .\chat\templates\chat\index.html:139 .\chat\templates\chat\index.html:148
+#: .\chat\templates\chat\index.html:197 .\chat\templates\chat\index.html:301
+msgid "Select"
+msgstr "चयन करें"
+
+#: .\chat\templates\chat\index.html:146
+msgid "Police Station"
+msgstr "पुलिस थाना"
+
+#: .\chat\templates\chat\index.html:154 .\chat\templates\chat\index.html:180
+#: .\chat\templates\chat\index.html:205
+msgid "Close"
+msgstr "बंद करें"
+
+#: .\chat\templates\chat\index.html:155 .\chat\templates\chat\index.html:181
+#: .\chat\templates\chat\index.html:206
+msgid "Submit"
+msgstr "जमा करें"
+
+#: .\chat\templates\chat\index.html:164
+msgid "Select the Incident Date and Reported Date"
+msgstr "घटना और रिपोर्ट जमा कराने की तारीख का चयन करें"
+
+#: .\chat\templates\chat\index.html:170
+msgid "Incident Date"
+msgstr "घटना की तारीख और समय"
+
+#: .\chat\templates\chat\index.html:174
+msgid "Reported Date"
+msgstr "रिपोर्ट जमा कराने की तारीख और समय"
+
+#: .\chat\templates\chat\index.html:190
+msgid "Select the Feedback"
+msgstr "प्रतिक्रिया का चयन करें"
+
+#: .\chat\templates\chat\index.html:282
+msgid "An Error Occured while processing your Request. Please try again later."
+msgstr "कृपया बाद में पुन: प्रयास करें।"

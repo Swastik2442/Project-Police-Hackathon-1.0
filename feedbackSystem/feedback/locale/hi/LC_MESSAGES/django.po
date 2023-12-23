@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-19 23:19+0530\n"
+"POT-Creation-Date: 2023-12-23 19:23+0530\n"
 "PO-Revision-Date: 2023-12-20 17:36+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\feedback\templates\feedback\home.html:11
-#: .\feedback\templates\feedback\home.html:38
-#: .\feedback\templates\feedback\home.html:66
+#: .\feedback\templates\feedback\home.html:12
+#: .\feedback\templates\feedback\home.html:39
+#: .\feedback\templates\feedback\home.html:67
 #: .\feedback\templates\feedback\index.html:7
 msgid "Home"
 msgstr "होम"
 
-#: .\feedback\templates\feedback\home.html:11
-#: .\feedback\templates\feedback\home.html:32
+#: .\feedback\templates\feedback\home.html:12
+#: .\feedback\templates\feedback\home.html:33
 msgid "Police Feedback System"
 msgstr "पुलिस प्रतिक्रिया प्रणाली"
 
-#: .\feedback\templates\feedback\home.html:44
+#: .\feedback\templates\feedback\home.html:45
 #: .\feedback\templates\feedback\submit.html:4
 msgid "Submit Feedback"
 msgstr "प्रतिक्रिया दें"
 
-#: .\feedback\templates\feedback\home.html:50
+#: .\feedback\templates\feedback\home.html:51
 #: .\feedback\templates\feedback\view.html:5
 msgid "View Submitted Feedbacks"
 msgstr "आपके द्वारा करी गयी प्रतिक्रियाऍं देखें"
 
-#: .\feedback\templates\feedback\home.html:67
+#: .\feedback\templates\feedback\home.html:68
 #: .\feedback\templates\feedback\submit.html:58
 msgid "Feedback"
 msgstr "प्रतिक्रिया"
 
-#: .\feedback\templates\feedback\home.html:68
+#: .\feedback\templates\feedback\home.html:69
 msgid "Staff Dashboard"
 msgstr "स्टाफ डैशबोर्ड"
 
-#: .\feedback\templates\feedback\home.html:74
+#: .\feedback\templates\feedback\home.html:75
 msgid "Log Out"
 msgstr "लॉग आउट"
 
-#: .\feedback\templates\feedback\home.html:76
+#: .\feedback\templates\feedback\home.html:77
 msgid "Login"
 msgstr "लॉग इन"
 
-#: .\feedback\templates\feedback\home.html:77
+#: .\feedback\templates\feedback\home.html:78
 msgid "Sign Up"
 msgstr "साइन अप"
 

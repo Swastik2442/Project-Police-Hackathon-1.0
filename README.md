@@ -18,6 +18,7 @@ python3 manage.py runserver
 
 ### Uses
 * [Django](https://www.djangoproject.com/)
+* [Twilio](https://www.twilio.com/)
 * [Bootstrap](https://getbootstrap.com/)
 * [jQuery](https://jquery.com/)
 * [Waypoints](http://imakewebthings.com/waypoints/)

@@ -7,8 +7,10 @@ certifi==2023.11.17
 charset-normalizer==3.3.2
 Django==5.0
 django-macaddress==1.8.0
+django-minify-html==1.7.1
 frozenlist==1.4.1
 idna==3.6
+minify_html==0.11.2
 multidict==6.0.4
 netaddr==0.9.0
 PyJWT==2.8.0
