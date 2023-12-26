@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import user_passes_test
 
 from .models import Profile
+from .utils import initialSetup
 from .messaging import MessageHandler
 from feedbackSystem.settings import LANGUAGE_CODE, COUNTRY_E146_CODE
 
@@ -45,7 +46,7 @@ def signup_view(request: HttpRequest):
 
             nvGroup = Group.objects.get(name='authNotVerified')
             newUser.groups.add(nvGroup)
-            
+
             user = authenticate(request, username=phone, password=password1)
             if user is None:
                 raise ValueError()

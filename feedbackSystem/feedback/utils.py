@@ -10,12 +10,12 @@ def getMessageFromFeedback(feedback: Feedback, language='en'):
     userName = user.first_name + ' ' + user.last_name
     if language == 'en':
         message = f"""Dear {userName},
-        Thank You for submitting the Feedback for the {feedback.forStation.name}.
-        You had a {experienceEN[int(feedback.experience)]} experience at the station. We hope that you will have a better experience next time.
-        Rajasthan Police"""
+Thank You for submitting the Feedback for the {feedback.forStation.name}.
+You had a {experienceEN[int(feedback.experience)]} experience at the station. We hope that you will have a better experience next time.
+Rajasthan Police"""
     elif language == 'hi':
         message = f"""प्रिय {userName},
-        {feedback.forStation.name} के लिए फीडबैक जमा करने के लिए धन्यवाद।
-        पुलिस स्टेशन में आपका अनुभव {experienceHI[int(feedback.experience)]} रहा। हमें उम्मीद है कि अगली बार आपको अनुभव बेहतर होगा।
-        राजस्थान पुलिस"""
+{feedback.forStation.name} के लिए फीडबैक जमा करने के लिए धन्यवाद।
+पुलिस स्टेशन में आपका अनुभव {experienceHI[int(feedback.experience)]} रहा। हमें उम्मीद है कि अगली बार आपको अनुभव बेहतर होगा।
+राजस्थान पुलिस"""
     return message

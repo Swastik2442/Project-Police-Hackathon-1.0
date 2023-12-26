@@ -6,6 +6,9 @@ class Chat(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=False, null=True)
     userIP = models.GenericIPAddressField(blank=False, null=False)
 
+    def __str__(self):
+        return f"{self.user} ({self.userIP})"
+
 class Message(models.Model):
     """A Django Model representing a Message in a Chat."""
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, blank=False, null=False)
@@ -14,3 +17,6 @@ class Message(models.Model):
 
     byBot = models.BooleanField(default=False, blank=False, null=False)
     discussionEnd = models.BooleanField(default=False, blank=False, null=False)
+
+    def __str__(self):
+        return f"{self.chat} - {self.timestamp}"

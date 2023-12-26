@@ -18,6 +18,9 @@ from dotenv import load_dotenv
 # Includes the Local Environment Variables
 load_dotenv()
 
+# Use this when deploying to Apache2
+# load_dotenv('/home/ubuntu/RJPOLICE_HACK_157_Binary_Brigade_1/.env')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,9 +32,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eval(getenv("DEBUG"))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # Server IP/DNS Here
+]
 
 
 # Application definition
@@ -113,6 +118,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Deployment Settings
+# https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+SECURE_SSL_REDIRECT = eval(getenv("SECURE_SSL_REDIRECT"))
+
+CSRF_COOKIE_SECURE = eval(getenv("CSRF_COOKIE_SECURE"))
+
+SESSION_COOKIE_SECURE = eval(getenv("SESSION_COOKIE_SECURE"))
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -133,6 +146,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# STATIC_ROOT = '/path/to/project/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

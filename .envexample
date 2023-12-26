@@ -1,3 +1,7 @@
+DEBUG="True-False"
+SECURE_SSL_REDIRECT="True-False"
+CSRF_COOKIE_SECURE="True-False"
+SESSION_COOKIE_SECURE="True-False"
 DJANGO_SECRET_KEY="your-secret-key-here"
 TWILIO_ACCOUNT_SID="your-account-sid-here"
 TWILIO_AUTH_TOKEN="your-auth-token-here"
