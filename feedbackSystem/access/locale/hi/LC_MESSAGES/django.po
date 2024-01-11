@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-23 19:23+0530\n"
+"POT-Creation-Date: 2024-01-11 19:58+0530\n"
 "PO-Revision-Date: 2023-12-20 17:36+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -71,7 +71,11 @@ msgstr "होम"
 msgid "Feedbacks"
 msgstr "प्रतिक्रियाऍं"
 
-#: .\access\templates\access\home.html:309
+#: .\access\templates\access\home.html:302
+msgid "Chat"
+msgstr "चैट"
+
+#: .\access\templates\access\home.html:310
 msgid "This year"
 msgstr "इस साल"
 

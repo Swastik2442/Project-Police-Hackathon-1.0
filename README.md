@@ -10,8 +10,10 @@ cd RJPOLICE_HACK_157_Binary_Brigade_1
 python3 -m venv myenv
 source myenv/bin/activate
 pip3 install -r requirements.txt
-cp .envexample .env # Edit with your Values
+cp .envexample .env
+nano .env # Edit with your Values
 cd feedbackSystem
+nano feedbackSystem/settings.py # Edit with your Values
 python3 manage.py migrate
 python3 manage.py compilemessages
 python3 manage.py collectstatic

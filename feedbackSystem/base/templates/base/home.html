@@ -15,6 +15,15 @@
     {% block scripts %}{% endblock %}
 </head>
 <body style="background-color: ghostwhite">
+    <div class="position-fixed bottom-0 end-0 mb-3 me-3 bg-dark shadow rounded-5">
+      <a class="btn btn-bd-primary py-2 d-flex align-items-center" role="button" href="{% url 'chatIndex' %}">
+        <svg class="bi my-1 theme-icon-active text-white" width="2em" height="2em" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.518 7.5H13v-1h3.523A1.99 1.99 0 0118.5 8.477v8.689a1.309 1.309 0 01-2.232.95l-.013-.014-1.863-2.142H8.48a1.98 1.98 0 01-1.98-1.953V10.5h1v3.496a.98.98 0 00.98.964h6.368l2.134 2.455a.31.31 0 00.518-.236V8.482a.99.99 0 00-.982-.982z" fill="currentColor"></path>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.525 1.5h7.995a1.98 1.98 0 011.98 2.003V9a1.98 1.98 0 01-1.98 1.98H5.608l-1.863 2.142-.013.013a1.31 1.31 0 01-2.232-.949V3.502M11.52 2.5H3.51a.99.99 0 00-1.01.997v8.702a.31.31 0 00.518.236L5.152 9.98h6.368A.98.98 0 0012.5 9V3.493a.978.978 0 00-.98-.993z" fill="currentColor"></path>
+        </svg>
+        <span class="visually-hidden">Start Chat</span>
+      </a>
+    </div>
     {% block header %}
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">

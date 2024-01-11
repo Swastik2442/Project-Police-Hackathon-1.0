@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: feedbackSystem 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-23 19:23+0530\n"
+"POT-Creation-Date: 2024-01-11 19:58+0530\n"
 "PO-Revision-Date: 2023-12-21 11:12+0530\n"
 "Last-Translator: Swastik Kulshreshtha <swastik2442@gmail.com>\n"
 "Language: Hindi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\base\templates\base\home.html:12 .\base\templates\base\home.html:28
+#: .\base\templates\base\home.html:12 .\base\templates\base\home.html:37
 #: .\base\templates\base\index.html:5
 msgid "Home"
 msgstr "होम"
@@ -26,24 +26,24 @@ msgstr "होम"
 msgid "Police Feedback System"
 msgstr "पुलिस प्रतिक्रिया प्रणाली"
 
-#: .\base\templates\base\home.html:29
+#: .\base\templates\base\home.html:38
 msgid "Feedback"
 msgstr "प्रतिक्रिया"
 
-#: .\base\templates\base\home.html:30
+#: .\base\templates\base\home.html:39
 msgid "Staff Dashboard"
 msgstr "स्टाफ डैशबोर्ड"
 
-#: .\base\templates\base\home.html:36
+#: .\base\templates\base\home.html:45
 msgid "Log Out"
 msgstr "लॉग आउट"
 
-#: .\base\templates\base\home.html:38 .\base\templates\base\login.html:5
+#: .\base\templates\base\home.html:47 .\base\templates\base\login.html:5
 #: .\base\templates\base\login.html:11 .\base\templates\base\login.html:23
 msgid "Login"
 msgstr "लॉग इन"
 
-#: .\base\templates\base\home.html:39 .\base\templates\base\signup.html:5
+#: .\base\templates\base\home.html:48 .\base\templates\base\signup.html:5
 #: .\base\templates\base\signup.html:11 .\base\templates\base\signup.html:54
 msgid "Sign Up"
 msgstr "साइन अप"
