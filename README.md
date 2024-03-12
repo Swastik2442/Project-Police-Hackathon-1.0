@@ -47,7 +47,8 @@ python3 manage.py runserver
 * [Waypoints](http://imakewebthings.com/waypoints/)
 * [Others](https://github.com/Swastik2442/RJPOLICE_HACK_157_Binary_Brigade_1/network/dependencies)
 
-### Team Members
-<a href="https://github.com/Swastik2442/RJPOLICE_HACK_157_Binary_Brigade_1/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Swastik2442/RJPOLICE_HACK_157_Binary_Brigade_1" />
-</a>
+### Contributors
+
+|Rajat Paliwal|Saurabh Saini|Swastik Kulshreshtha|Utkarsh Tailor|
+|:---:|:---:|:---:|:---:|
+|[@Rajat0729](https://github.com/Rajat0729)|[@SaurabhSaini04](https://github.com/SaurabhSaini04)|[@Swastik2442](https://github.com/Swastik2442)|[@UtkarshTailor](https://github.com/UtkarshTailor)|
